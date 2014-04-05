@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Runner", "Runner", "{CDBB96F6-750E-4A39-A2FA-CDF0C59E1B7D}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FattyRunner.Engine", "Runner\FattyRunner.Engine\FattyRunner.Engine.fsproj", "{A08E2DFC-C34F-4353-AF50-25139A51551D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E9D56F1D-0F26-41AC-90A8-2BB8814C6D61}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FattyRunner.Engine.Tests", "Tests\FattyRunner.Engine.Tests\FattyRunner.Engine.Tests.fsproj", "{82898601-EA61-47E8-8FE0-00A3E8239124}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A08E2DFC-C34F-4353-AF50-25139A51551D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A08E2DFC-C34F-4353-AF50-25139A51551D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A08E2DFC-C34F-4353-AF50-25139A51551D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A08E2DFC-C34F-4353-AF50-25139A51551D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82898601-EA61-47E8-8FE0-00A3E8239124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82898601-EA61-47E8-8FE0-00A3E8239124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82898601-EA61-47E8-8FE0-00A3E8239124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82898601-EA61-47E8-8FE0-00A3E8239124}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A08E2DFC-C34F-4353-AF50-25139A51551D} = {CDBB96F6-750E-4A39-A2FA-CDF0C59E1B7D}
+		{82898601-EA61-47E8-8FE0-00A3E8239124} = {E9D56F1D-0F26-41AC-90A8-2BB8814C6D61}
+	EndGlobalSection
+EndGlobal
