@@ -1,9 +1,9 @@
 ﻿namespace FattyRunner.Engine.Tests
 
-open Xunit
-open FsUnit.Xunit
+module ``Engine tests`` =
 
-module xxxx =
+    open Xunit
+    open FsUnit.Xunit
 
     [<Fact>]
     let ``Should run engine``() = 
