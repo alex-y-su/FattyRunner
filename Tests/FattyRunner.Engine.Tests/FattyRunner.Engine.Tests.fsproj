@@ -32,6 +32,14 @@
     <DocumentationFile>bin\Release\FattyRunner.Engine.Tests.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FSharp.PowerPack">
+      <HintPath>..\..\packages\FSPowerPack.Core.Community.3.0.0.0\Lib\Net40\FSharp.PowerPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FSharp.PowerPack.Metadata">
+      <HintPath>..\..\packages\FSPowerPack.Metadata.Community.3.0.0.0\Lib\Net40\FSharp.PowerPack.Metadata.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FsUnit.CustomMatchers">
       <HintPath>..\..\packages\FsUnit.xUnit.1.2.2.1\Lib\net40\FsUnit.CustomMatchers.dll</HintPath>
       <Private>True</Private>
