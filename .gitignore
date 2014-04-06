@@ -7,3 +7,5 @@ Backup/
 UpgradeLog.htm
 Tests/Resources/AssemblyLoadTest/obj/
 Tests/Resources/PerfTestsContainer/obj/
+Runner/FattyRunner.Client/bin/
+Runner/FattyRunner.Client/obj/
