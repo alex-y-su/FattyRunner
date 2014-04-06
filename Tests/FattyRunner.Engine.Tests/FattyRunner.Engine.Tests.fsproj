@@ -65,9 +65,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EngineTests.fs" />
     <None Include="packages.config" />
     <None Include="app.config" />
+    <Compile Include="Helpers.fs" />
+    <Compile Include="ConfigurationTests.fs" />
+    <Compile Include="CounterTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Runner\FattyRunner.Engine\FattyRunner.Engine.fsproj">

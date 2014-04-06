@@ -43,8 +43,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainObjects.fs" />
+    <Compile Include="TestLoader.fs" />
     <Compile Include="TestRunnerEngine.fs" />
     <None Include="Script.fsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FattyRunner.Interfaces\FattyRunner.Interfaces.csproj">
+      <Name>FattyRunner.Interfaces</Name>
+      <Project>{481c3e67-3821-4e01-b3d8-851ea5c97953}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
