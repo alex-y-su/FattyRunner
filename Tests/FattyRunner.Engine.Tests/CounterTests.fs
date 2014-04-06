@@ -16,6 +16,111 @@ module ``Engine counter tests`` =
         let counter = ctx.["counter"] :?> Counter
         member x.Run() = counter.Add()
     
+    type TestTypeWithInint(ctx : Map<string, obj>) =
+        let counter = ctx.["counter"] :?> Counter
+        member x.Service() = counter.Add()
+        member x.Run() = ()
+
+    [<Fact>]
+    let ``Should call init if initialized N/Step times``() =
+        let counter = new Counter(0u)
+        
+        let config = 
+            { Count = 100u
+              ProgressiveStep = 10u
+              WarmUp = 100u }
+        
+        let context = seq { yield "counter", (counter :> obj) } |> Map.ofSeq
+        let t = typeof<TestTypeWithInint>
+        let testRef = 
+            { Type = t
+              Run = getMethodReference t "Run"
+              Init = Some(getMethodReference t "Service")
+              Dispose = None}
+        
+        let test : Test = 
+            { Reference = testRef
+              Configuration = config }
+        
+        let envConfig = { Context = Some(context); Count = None }
+        let results = TestRunnerEngine.runTest envConfig test
+        counter.Count |> should equal 10u
+    
+    [<Fact>]
+    let ``Should call cleanup if initialized N/Step times``() =
+        let counter = new Counter(0u)
+        
+        let config = 
+            { Count = 100u
+              ProgressiveStep = 10u
+              WarmUp = 100u }
+        
+        let context = seq { yield "counter", (counter :> obj) } |> Map.ofSeq
+        let t = typeof<TestTypeWithInint>
+        let testRef = 
+            { Type = t
+              Run = getMethodReference t "Run"
+              Init = None
+              Dispose = Some(getMethodReference t "Service") }
+        
+        let test : Test = 
+            { Reference = testRef
+              Configuration = config }
+        
+        let envConfig = { Context = Some(context); Count = None }
+        let results = TestRunnerEngine.runTest envConfig test
+        counter.Count |> should equal 10u
+
+    [<Fact>]
+    let ``Should call init/cleanup if initialized N/Step times``() =
+        let counter = new Counter(0u)
+        
+        let config = 
+            { Count = 100u
+              ProgressiveStep = 10u
+              WarmUp = 100u }
+        
+        let context = seq { yield "counter", (counter :> obj) } |> Map.ofSeq
+        let t = typeof<TestTypeWithInint>
+        let testRef = 
+            { Type = t
+              Run = getMethodReference t "Run"
+              Init = Some(getMethodReference t "Service")
+              Dispose = Some(getMethodReference t "Service") }
+        
+        let test : Test = 
+            { Reference = testRef
+              Configuration = config }
+        
+        let envConfig = { Context = Some(context); Count = None }
+        let results = TestRunnerEngine.runTest envConfig test
+        counter.Count |> should equal 20u
+    
+    [<Fact>]
+    let ``Should don't call init/cleanup if not initialized``() =
+        let counter = new Counter(0u)
+        
+        let config = 
+            { Count = 100u
+              ProgressiveStep = 10u
+              WarmUp = 100u }
+        
+        let context = seq { yield "counter", (counter :> obj) } |> Map.ofSeq
+        let t = typeof<TestTypeWithInint>
+        let testRef = 
+            { Type = t
+              Run = getMethodReference t "Run"
+              Init = None
+              Dispose = None }
+        
+        let test : Test = 
+            { Reference = testRef
+              Configuration = config }
+        
+        let envConfig = { Context = Some(context); Count = None }
+        let results = TestRunnerEngine.runTest envConfig test
+        counter.Count |> should equal 0u
+
     [<Fact>]
     let ``Stack owerflow should not happen on big N``() = 
         let counter = new Counter(0u)

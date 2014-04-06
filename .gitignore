@@ -6,3 +6,4 @@ FattyRunner.Interfaces/obj/
 Backup/
 UpgradeLog.htm
 Tests/Resources/AssemblyLoadTest/obj/
+Tests/Resources/PerfTestsContainer/obj/

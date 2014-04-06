@@ -21,3 +21,11 @@ type Configuration =
 type EnvironmentConfiguration = 
     { Context : Map<string, obj> option
       Count : uint32 option }
+
+type TimeMeasure = 
+    { IterationCount: uint32
+      Time: uint64 }
+       
+type TestResult = 
+    { Test: Test
+      Timings: TimeMeasure list }

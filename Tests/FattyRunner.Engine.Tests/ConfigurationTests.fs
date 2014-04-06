@@ -32,12 +32,25 @@ module ``Assembly reading test`` =
     open NHamcrest
     open NHamcrest.Core
 
-    let Empty<'a> = CustomMatcher<'a list>("Collection is empty", fun coll -> coll.Length > 0) 
+    [<Fact>]
+    let ``Should find proper assemblies in directory``() =
+        let dir = System.AppDomain.CurrentDomain.BaseDirectory
+        let foundAssemblies = 
+            TestLoader.loadAllFromDirectory dir |> Seq.toList
+        let expectedName = 
+            typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>.Assembly.FullName
+        
+        foundAssemblies |> Seq.length
+                        |> should greaterThan 1
+
+        foundAssemblies |> Seq.exists (fun x-> x.FullName = expectedName)
+                        |> should be True
 
     [<Fact>]
     let ``Assembly loader should find all types with fatty methods``() =
         let asm = typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>.Assembly
-        let tests = TestLoader.load asm { Context = None; Count = None } |> Seq.toList
+        let tests = 
+            TestLoader.loadTests asm { Context = None; Count = None } |> Seq.toList
 
         tests.IsEmpty |> should be False
         tests.Length |> should equal 2

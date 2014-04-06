@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Runner", "Runner", "{CDBB96F6-750E-4A39-A2FA-CDF0C59E1B7D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E9D56F1D-0F26-41AC-90A8-2BB8814C6D61}"
@@ -16,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyLoadTests", "Tests\Resources\AssemblyLoadTest\AssemblyLoadTests.csproj", "{AC594D30-096D-49F5-99C6-17966349C663}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestAssemblies", "TestAssemblies", "{62605A81-9771-499A-8F5B-05A1C047AB2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfTestsContainer", "Tests\Resources\PerfTestsContainer\PerfTestsContainer.csproj", "{8F817CFF-D513-44FB-8051-8B5E31A69E0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +39,10 @@ Global
 		{AC594D30-096D-49F5-99C6-17966349C663}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC594D30-096D-49F5-99C6-17966349C663}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC594D30-096D-49F5-99C6-17966349C663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F817CFF-D513-44FB-8051-8B5E31A69E0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F817CFF-D513-44FB-8051-8B5E31A69E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F817CFF-D513-44FB-8051-8B5E31A69E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F817CFF-D513-44FB-8051-8B5E31A69E0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,5 +52,6 @@ Global
 		{82898601-EA61-47E8-8FE0-00A3E8239124} = {E9D56F1D-0F26-41AC-90A8-2BB8814C6D61}
 		{62605A81-9771-499A-8F5B-05A1C047AB2C} = {E9D56F1D-0F26-41AC-90A8-2BB8814C6D61}
 		{AC594D30-096D-49F5-99C6-17966349C663} = {62605A81-9771-499A-8F5B-05A1C047AB2C}
+		{8F817CFF-D513-44FB-8051-8B5E31A69E0C} = {62605A81-9771-499A-8F5B-05A1C047AB2C}
 	EndGlobalSection
 EndGlobal

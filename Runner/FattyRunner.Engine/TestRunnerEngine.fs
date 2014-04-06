@@ -35,10 +35,22 @@ module TestRunnerEngine =
         do prepareEnvironment cfg
         let instance = ReflectionHelper.instantiate t.Reference.Type cfg.Context
         
+        let before() = 
+            match t.Reference.Init with
+            | Some(f) -> f.Invoke(instance,null) |> ignore
+                         beforeStart cfg
+            | _ -> beforeStart cfg
+
+        let after() = 
+            match t.Reference.Dispose with
+            | Some(f) -> afterEnd cfg
+                         f.Invoke(instance,null) |> ignore
+            | _ -> afterEnd cfg
+
         let decoratedExecute n x = 
-            beforeStart cfg
+            do before()
             let res = executeStep n x
-            afterEnd cfg
+            do after()
             res
         
         let step = 
@@ -60,10 +72,12 @@ module TestRunnerEngine =
 
         let timings = 
             seq { step..step..count }
-            |> Seq.map (fun x -> (x, decoratedExecute x fu))
-            |> Seq.toArray
+            |> Seq.map (fun x ->  x, decoratedExecute x fu)
+            |> Seq.map (fun (n,t) -> { IterationCount = uint32 n 
+                                       Time = uint64 t} : TimeMeasure)
+            |> Seq.toList
         
         do shutdownEnvironment cfg
-        timings
+        { Test = t; Timings = timings} : TestResult
     
     let run (tests : Test list) cfg = tests |> Seq.map (runTest cfg)

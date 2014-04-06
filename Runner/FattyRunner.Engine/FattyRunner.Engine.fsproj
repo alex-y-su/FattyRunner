@@ -45,7 +45,6 @@
     <Compile Include="DomainObjects.fs" />
     <Compile Include="TestLoader.fs" />
     <Compile Include="TestRunnerEngine.fs" />
-    <None Include="Script.fsx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FattyRunner.Interfaces\FattyRunner.Interfaces.csproj">
