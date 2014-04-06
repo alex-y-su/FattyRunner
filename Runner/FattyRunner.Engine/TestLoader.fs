@@ -6,14 +6,18 @@ module TestLoader =
     let markedByAttr t (m:MethodInfo) =
             m.CustomAttributes |> Seq.exists (fun a -> a.AttributeType = t)
 
-    let isFattyMethod = markedByAttr typeof<FattyRunner.Interfaces.FatTestAttribute>
+    let fatAttrType = typeof<FattyRunner.Interfaces.FatTestAttribute>
+    let isFattyMethod = markedByAttr fatAttrType
     let isDisposeMethod = markedByAttr typeof<FattyRunner.Interfaces.FatCleanupAttribute>
     let isInitMethod = markedByAttr typeof<FattyRunner.Interfaces.FatInitAttribute>
 
     let getTestConfiguration (t:TypeInfo) (m:MethodInfo) =
-         { Count = 100u
-           WarmUp = 10u
-           ProgressiveStep = 1u }:TestConfiguration
+        let attr = m.GetCustomAttribute(fatAttrType) 
+                   :?> FattyRunner.Interfaces.FatTestAttribute 
+        
+        { Count = attr.MaxIterations
+          WarmUp = attr.WarmUpIterations
+          ProgressiveStep = attr.Step }:TestConfiguration
 
     let createTestRference t m init desp =
         { Type    = t:>System.Type
@@ -59,4 +63,3 @@ module TestLoader =
             methods |> Seq.map createTest'
         
         types |> Seq.map createTest |> Seq.concat
-

@@ -32,6 +32,18 @@ module ``Assembly reading test`` =
     open NHamcrest
     open NHamcrest.Core
 
+    let emptyGConf = { Context = None; Count = None }
+
+    [<Fact>]
+    let ``Should read configuration from attribute``() =
+        let t = typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>
+        let test = TestLoader.loadTests t.Assembly emptyGConf 
+                   |> Seq.find (fun x -> x.Reference.Type = t)
+        
+        let actual = test.Configuration
+        actual.Equals({ Count = 3000u; WarmUp = 150u; ProgressiveStep = 300u })
+        |> should be True
+
     [<Fact>]
     let ``Should find proper assemblies in directory``() =
         let dir = System.AppDomain.CurrentDomain.BaseDirectory
@@ -49,8 +61,7 @@ module ``Assembly reading test`` =
     [<Fact>]
     let ``Assembly loader should find all types with fatty methods``() =
         let asm = typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>.Assembly
-        let tests = 
-            TestLoader.loadTests asm { Context = None; Count = None } |> Seq.toList
+        let tests = TestLoader.loadTests asm emptyGConf |> Seq.toList
 
         tests.IsEmpty |> should be False
         tests.Length |> should equal 2

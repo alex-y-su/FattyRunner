@@ -42,6 +42,7 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers.fs" />
     <Compile Include="DomainObjects.fs" />
     <Compile Include="TestLoader.fs" />
     <Compile Include="TestRunnerEngine.fs" />
