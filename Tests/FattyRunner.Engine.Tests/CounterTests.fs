@@ -17,6 +17,24 @@ module ``Engine counter tests`` =
         member x.Run() = counter.Add()
     
     [<Fact>]
+    let ``Stack owerflow should not happen on big N``() = 
+        let counter = new Counter(0u)
+        
+        let config = 
+            { Count = 1000000u
+              ProgressiveStep = 1000000u
+              WarmUp = 0u }
+        
+        let context = seq { yield "counter", (counter :> obj) } |> Map.ofSeq
+        
+        let test : Test = 
+            { Reference = createTestRef typeof<TestType> "Run"
+              Configuration = config }
+        let envConfig = { Context = Some(context); Count = None }
+        let results = TestRunnerEngine.runTest envConfig test
+        counter.Count |> should equal 1000000u
+
+    [<Fact>]
     let ``Should call method body N times``() = 
         let counter = new Counter(0u)
         
