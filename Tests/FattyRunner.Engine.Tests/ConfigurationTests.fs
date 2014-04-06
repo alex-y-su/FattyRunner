@@ -21,4 +21,31 @@ module ``Engine objects tests`` =
             { Reference = createTestRef typeof<TestTypeWithoutCtor> "Run"
               Configuration = config }
         
-        TestRunnerEngine.runTest { Context = None } |> ignore
+        TestRunnerEngine.runTest { Context = None; Count = None } |> ignore
+
+module ``Assembly reading test`` =
+    open Xunit
+    open FsUnit.Xunit
+    open FattyRunner.Engine
+    open ReflectiponHelpers
+    open TestHelpers
+    open NHamcrest
+    open NHamcrest.Core
+
+    let Empty<'a> = CustomMatcher<'a list>("Collection is empty", fun coll -> coll.Length > 0) 
+
+    [<Fact>]
+    let ``Assembly loader should find all types with fatty methods``() =
+        let asm = typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>.Assembly
+        let tests = TestLoader.load asm { Context = None; Count = None } |> Seq.toList
+
+        tests.IsEmpty |> should be False
+        tests.Length |> should equal 2
+        
+        tests |> List.filter (fun x-> Option.isSome x.Reference.Init) 
+              |> List.length 
+              |> should equal 1
+        
+        tests |> List.filter (fun x-> Option.isSome x.Reference.Dispose) 
+              |> List.length 
+              |> should equal 1

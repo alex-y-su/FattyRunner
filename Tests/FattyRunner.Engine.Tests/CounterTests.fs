@@ -30,7 +30,8 @@ module ``Engine counter tests`` =
         let test : Test = 
             { Reference = createTestRef typeof<TestType> "Run"
               Configuration = config }
-        TestRunnerEngine.runTest { Context = Some(context) } test |> ignore
+        let envConfig = { Context = Some(context); Count = None }
+        TestRunnerEngine.runTest envConfig test |> ignore
         let expected = 
             seq { 1..10 }
             |> Seq.sum
@@ -51,5 +52,6 @@ module ``Engine counter tests`` =
         let test : Test = 
             { Reference = createTestRef typeof<TestType> "Run"
               Configuration = config }
-        TestRunnerEngine.runTest { Context = Some(context) } test |> ignore
+        let envConfig = { Context = Some(context); Count = None }
+        TestRunnerEngine.runTest envConfig test |> ignore
         counter.Count |> should equal 11u

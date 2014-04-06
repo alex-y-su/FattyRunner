@@ -72,9 +72,19 @@
     <Compile Include="CounterTests.fs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\FattyRunner.Interfaces\FattyRunner.Interfaces.csproj">
+      <Name>FattyRunner.Interfaces</Name>
+      <Project>{481c3e67-3821-4e01-b3d8-851ea5c97953}</Project>
+      <Private>True</Private>
+    </ProjectReference>
     <ProjectReference Include="..\..\Runner\FattyRunner.Engine\FattyRunner.Engine.fsproj">
       <Name>FattyRunner.Engine</Name>
       <Project>{a08e2dfc-c34f-4353-af50-25139a51551d}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Resources\AssemblyLoadTest\AssemblyLoadTests.csproj">
+      <Name>AssemblyLoadTests</Name>
+      <Project>{ac594d30-096d-49f5-99c6-17966349c663}</Project>
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>

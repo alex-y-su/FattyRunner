@@ -3,8 +3,8 @@
 type TestReference = 
     { Type : System.Type
       Run : System.Reflection.MethodInfo
-      Init : System.Reflection.MemberInfo option
-      Dispose : System.Reflection.MemberFilter option }
+      Init : System.Reflection.MethodInfo option
+      Dispose : System.Reflection.MethodInfo option }
 
 type TestConfiguration = 
     { Count : uint32
@@ -16,8 +16,8 @@ type Test =
       Configuration : TestConfiguration }
 
 type Configuration = 
-    { Count : uint32
-      TestsToRun : Test list }
+    { TestsToRun : Test list }
 
 type EnvironmentConfiguration = 
-    { Context : Map<string, obj> option }
+    { Context : Map<string, obj> option
+      Count : uint32 option }

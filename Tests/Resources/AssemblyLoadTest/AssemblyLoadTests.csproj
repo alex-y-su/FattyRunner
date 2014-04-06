@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{481C3E67-3821-4E01-B3D8-851EA5C97953}</ProjectGuid>
+    <ProjectGuid>{AC594D30-096D-49F5-99C6-17966349C663}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FattyRunner.Interfaces</RootNamespace>
-    <AssemblyName>FattyRunner.Interfaces</AssemblyName>
+    <RootNamespace>AssemblyLoadTests</RootNamespace>
+    <AssemblyName>AssemblyLoadTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -36,8 +36,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FattyAttributes.cs" />
+    <Compile Include="InitDisposeFatTestsContainer.cs" />
+    <Compile Include="PrimitiveFatTestsContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\FattyRunner.Interfaces\FattyRunner.Interfaces.csproj">
+      <Project>{481c3e67-3821-4e01-b3d8-851ea5c97953}</Project>
+      <Name>FattyRunner.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

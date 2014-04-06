@@ -5,3 +5,4 @@ Runner/FattyRunner.Engine/bin/
 FattyRunner.Interfaces/obj/
 Backup/
 UpgradeLog.htm
+Tests/Resources/AssemblyLoadTest/obj/

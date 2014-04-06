@@ -13,6 +13,10 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FattyRunner.Engine.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FattyRunner.Interfaces", "FattyRunner.Interfaces\FattyRunner.Interfaces.csproj", "{481C3E67-3821-4E01-B3D8-851EA5C97953}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyLoadTests", "Tests\Resources\AssemblyLoadTest\AssemblyLoadTests.csproj", "{AC594D30-096D-49F5-99C6-17966349C663}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestAssemblies", "TestAssemblies", "{62605A81-9771-499A-8F5B-05A1C047AB2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{481C3E67-3821-4E01-B3D8-851EA5C97953}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{481C3E67-3821-4E01-B3D8-851EA5C97953}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{481C3E67-3821-4E01-B3D8-851EA5C97953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC594D30-096D-49F5-99C6-17966349C663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC594D30-096D-49F5-99C6-17966349C663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC594D30-096D-49F5-99C6-17966349C663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC594D30-096D-49F5-99C6-17966349C663}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,5 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A08E2DFC-C34F-4353-AF50-25139A51551D} = {CDBB96F6-750E-4A39-A2FA-CDF0C59E1B7D}
 		{82898601-EA61-47E8-8FE0-00A3E8239124} = {E9D56F1D-0F26-41AC-90A8-2BB8814C6D61}
+		{62605A81-9771-499A-8F5B-05A1C047AB2C} = {E9D56F1D-0F26-41AC-90A8-2BB8814C6D61}
+		{AC594D30-096D-49F5-99C6-17966349C663} = {62605A81-9771-499A-8F5B-05A1C047AB2C}
 	EndGlobalSection
 EndGlobal
