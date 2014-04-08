@@ -51,7 +51,7 @@ module ConsoleRunner =
     open FattyRunner.Engine
 
     [<Literal>]
-    let helpMessage = @"Use 
+    let helpMessage = @"Usage: 
                         n:[number]  - Count of iterations
 
                         path:[path] - File or directory where test assemblies are located.\n 
