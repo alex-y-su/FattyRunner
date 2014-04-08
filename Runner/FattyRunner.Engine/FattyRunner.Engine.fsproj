@@ -45,6 +45,7 @@
     <Compile Include="Helpers.fs" />
     <Compile Include="DomainObjects.fs" />
     <Compile Include="TestLoader.fs" />
+    <Compile Include="TestResultePersister.fs" />
     <Compile Include="TestRunnerEngine.fs" />
   </ItemGroup>
   <ItemGroup>

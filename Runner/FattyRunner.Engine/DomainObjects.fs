@@ -25,7 +25,7 @@ type EnvironmentConfiguration =
 type TimeMeasure = 
     { IterationCount: uint32
       Time: uint64 }
-       
+
 type TestResult = 
-    { Test: Test
-      Timings: TimeMeasure list }
+    { TestName : string
+      Timings  : TimeMeasure list }
