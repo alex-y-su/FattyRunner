@@ -4,6 +4,11 @@ module TestRunnerEngine =
     open System
     open System.Diagnostics
 
+    let callOption (f:System.Reflection.MethodInfo option) instance =
+        match f with
+        | Some(f) -> f.Invoke(instance,null) |> ignore
+        | _ -> ()
+
     let prepareEnvironment cfg = ()
     let shutdownEnvironment cfg = ()
     let beforeStart config = ()
@@ -55,7 +60,11 @@ module TestRunnerEngine =
 
         match t.Configuration.WarmUp with
         | 0u -> () 
-        | x -> seq {1..int x } |> Seq.iter (fun _-> fu() |> ignore)
+        | x ->
+            callOption t.Reference.Init instance
+            seq {1..int x } |> Seq.iter (fun _-> fu() |> ignore)
+            callOption t.Reference.Dispose instance
+
 
         do System.Threading.Thread.Sleep(5)
 
@@ -69,5 +78,5 @@ module TestRunnerEngine =
         do shutdownEnvironment cfg
         { TestName = t.Reference.Type.FullName; Timings = timings} : TestResult
     
-    let run (tests : Test list) (cfg: EnvironmentConfiguration) : TestResult seq = 
-        tests |> Seq.map (runTest cfg)
+    let run (tests : Test list) (cfg: EnvironmentConfiguration) : TestResult list = 
+        tests |> List.map (runTest cfg)

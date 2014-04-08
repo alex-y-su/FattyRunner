@@ -18,7 +18,9 @@ module ``Console runner tests`` =
         ConsoleRunner.run args |> should equal 0
        
         do tw.Flush()
-        sb.ToString().Split('\n').Length |> should equal 20
+        let res = sb.ToString()
+        //n = 20 + 50 warm up (default) and 1 because of split
+        res.Split('\n').Length-1 |> should equal (20+50)
 
     [<Fact>]
     let ``Should print help when args are wrong`` () =

@@ -22,13 +22,40 @@ module ``Engine counter tests`` =
         member x.Run() = ()
 
     [<Fact>]
+    let ``Should call init/dispose on warm up``() =
+        let counter = new Counter(0u)
+
+        let config = 
+            { Count = 1u
+              ProgressiveStep = 1u
+              WarmUp = 1u }
+        
+        let context = seq { yield "counter", (counter :> obj) } |> Map.ofSeq
+        let t = typeof<TestTypeWithInint>
+        let testRef = 
+            { Type = t
+              Run = getMethodReference t "Run"
+              Init = Some(getMethodReference t "Service")
+              Dispose = Some(getMethodReference t "Service")}
+        
+        let test : Test = 
+            { Reference = testRef
+              Configuration = config }
+        
+        let envConfig = { Context = Some(context); Count = None }
+        let results = TestRunnerEngine.runTest envConfig test
+        //2 init warm up + run and 2 dispose warm up + run
+        counter.Count |> should equal 4u
+        ()
+
+    [<Fact>]
     let ``Should call init if initialized N/Step times``() =
         let counter = new Counter(0u)
         
         let config = 
             { Count = 100u
               ProgressiveStep = 10u
-              WarmUp = 100u }
+              WarmUp = 0u }
         
         let context = seq { yield "counter", (counter :> obj) } |> Map.ofSeq
         let t = typeof<TestTypeWithInint>
@@ -53,7 +80,7 @@ module ``Engine counter tests`` =
         let config = 
             { Count = 100u
               ProgressiveStep = 10u
-              WarmUp = 100u }
+              WarmUp = 0u }
         
         let context = seq { yield "counter", (counter :> obj) } |> Map.ofSeq
         let t = typeof<TestTypeWithInint>
@@ -78,7 +105,7 @@ module ``Engine counter tests`` =
         let config = 
             { Count = 100u
               ProgressiveStep = 10u
-              WarmUp = 100u }
+              WarmUp = 0u }
         
         let context = seq { yield "counter", (counter :> obj) } |> Map.ofSeq
         let t = typeof<TestTypeWithInint>

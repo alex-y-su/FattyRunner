@@ -70,7 +70,8 @@ module ConsoleRunner =
         match asm with 
         | Some(asm) -> 
             let tests = TestLoader.loadTests asm config |> Seq.toList
-            TestRunnerEngine.run tests config |> ignore
+            let results = TestRunnerEngine.run tests config
+            ()
         | _ -> raise (new System.Exception("Cannot load test from assembly"))
 
     let runDir (s:string) cfg = ()

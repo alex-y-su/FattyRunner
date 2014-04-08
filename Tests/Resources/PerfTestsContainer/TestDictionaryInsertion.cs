@@ -11,7 +11,6 @@ namespace PerfTestsContainer {
         [FatTest]
         public void SomeTest() {
             Console.WriteLine(++this._n);
-            Debug.WriteLine(_n.ToString());
         }
     }
 
