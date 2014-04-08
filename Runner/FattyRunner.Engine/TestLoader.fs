@@ -37,14 +37,14 @@ module TestLoader =
         | :? System.BadImageFormatException -> None
         | :? System.IO.FileLoadException -> None
 
-    let loadAllFromDirectory (dir:string) =
+    let loadAllAssembliesFromDirectory (dir:string) =
         let dir = System.AppDomain.CurrentDomain.BaseDirectory
         let fileRecords = System.IO.Directory.GetFiles(dir,"*.dll")
         fileRecords |> Seq.map tryLoadAssembly
                     |> Seq.filter Option.isSome
                     |> Seq.map Option.get
 
-    let loadFromFile = tryLoadAssembly
+    let loadAssemblyFromFile = tryLoadAssembly
 
     let loadTests (asm: Assembly) (cfg:EnvironmentConfiguration) = 
         let types = query { for x in asm.DefinedTypes do
@@ -57,9 +57,8 @@ module TestLoader =
             let disp = t.DeclaredMethods |> Seq.tryFind isDisposeMethod
             let createTest' m =
                 let c = getTestConfiguration t m
-
-                { Reference = createTestRference t m init disp
-                  Configuration = mergeConfigs c cfg }:Test                
+                    { Reference = createTestRference t m init disp
+                      Configuration = mergeConfigs c cfg }:Test                
             methods |> Seq.map createTest'
         
         types |> Seq.map createTest |> Seq.concat

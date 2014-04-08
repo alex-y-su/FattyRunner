@@ -69,4 +69,5 @@ module TestRunnerEngine =
         do shutdownEnvironment cfg
         { TestName = t.Reference.Type.FullName; Timings = timings} : TestResult
     
-    let run (tests : Test list) cfg = tests |> Seq.map (runTest cfg)
+    let run (tests : Test list) (cfg: EnvironmentConfiguration) : TestResult seq = 
+        tests |> Seq.map (runTest cfg)

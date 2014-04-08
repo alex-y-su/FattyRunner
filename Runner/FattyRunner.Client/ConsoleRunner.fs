@@ -24,7 +24,7 @@ module ConfigurationHelpers =
             Some(System.UInt32.Parse n)
         else None
     
-    let defaultConfiguration = 
+    let defaultConfiguration =
             { AssemblyLocation = ""
               TestList = []
               IterationsCount = None }
@@ -48,25 +48,37 @@ module ConfigurationHelpers =
 module ConsoleRunner = 
     open Azon.Helpers.Extensions
     open ConfigurationHelpers
-    
-    let writeConfigurationIncorrect() =
-        printfn @"Use 
-                    n:[number]  - Count of iterations
+    open FattyRunner.Engine
 
-                    path:[path] - File or directory where test assemblies are located.\n 
-                                  Can be used multiple times.
+    [<Literal>]
+    let helpMessage = @"Use 
+                        n:[number]  - Count of iterations
+
+                        path:[path] - File or directory where test assemblies are located.\n 
+                                      Can be used multiple times.
                     
-                    test:[name] - Full class name + method name like ""MyNamespace.MyClass.MethodToTest"".\n
-                                  Can be used multiple times.  
-                  "
+                        test:[name] - Full class name + method name like ""MyNamespace.MyClass.MethodToTest"".\n
+                                      Can be used multiple times."
 
-    let runFile (s:string) = ()
-    let runDir (s:string) = ()
+    let writeConfigurationIncorrect() =
+        printfn "%s" helpMessage
+
+    let runFile (s:string) (cfg:RunConfiguration) = 
+        let config : EnvironmentConfiguration =
+            { Count = cfg.IterationsCount; Context = None }
+        let asm = TestLoader.loadAssemblyFromFile s
+        match asm with 
+        | Some(asm) -> 
+            let tests = TestLoader.loadTests asm config |> Seq.toList
+            TestRunnerEngine.run tests config |> ignore
+        | _ -> raise (new System.Exception("Cannot load test from assembly"))
+
+    let runDir (s:string) cfg = ()
 
     let run args = 
         let cfg = readConfigFromArgs (args |> List.ofArray)
         match cfg.AssemblyLocation with
-        | x when System.IO.File.Exists x -> runFile x
-        | x when System.IO.Directory.Exists x -> runDir x
+        | x when System.IO.File.Exists x -> runFile x cfg
+        | x when System.IO.Directory.Exists x -> runDir x cfg
         | _ -> do writeConfigurationIncorrect()
         0

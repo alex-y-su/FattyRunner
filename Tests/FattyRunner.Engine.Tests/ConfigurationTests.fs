@@ -48,7 +48,7 @@ module ``Assembly reading test`` =
     let ``Should find proper assemblies in directory``() =
         let dir = System.AppDomain.CurrentDomain.BaseDirectory
         let foundAssemblies = 
-            TestLoader.loadAllFromDirectory dir |> Seq.toList
+            TestLoader.loadAllAssembliesFromDirectory dir |> Seq.toList
         let expectedName = 
             typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>.Assembly.FullName
         
