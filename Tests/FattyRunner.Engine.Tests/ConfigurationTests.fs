@@ -35,6 +35,16 @@ module ``Assembly reading test`` =
     let emptyGConf = { Context = None; Count = None }
 
     [<Fact>]
+    let ``Global config count should override attribute iterations count``()=
+        let gcfg = { Context = None; Count = Some(999u) }
+        let t = typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>
+        let test = TestLoader.loadTests t.Assembly gcfg 
+                   |> Seq.find (fun x -> x.Reference.Type = t)
+        let actual = test.Configuration
+        actual.Equals({ Count = 999u; WarmUp = 150u; ProgressiveStep = 300u })
+        |> should be True
+
+    [<Fact>]
     let ``Should read configuration from attribute``() =
         let t = typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>
         let test = TestLoader.loadTests t.Assembly emptyGConf 

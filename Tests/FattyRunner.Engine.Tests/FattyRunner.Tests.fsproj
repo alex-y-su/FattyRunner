@@ -94,6 +94,11 @@
       <Project>{ac594d30-096d-49f5-99c6-17966349c663}</Project>
       <Private>True</Private>
     </ProjectReference>
+    <ProjectReference Include="..\Resources\PerfTestsContainer\PerfTestsContainer.csproj">
+      <Name>PerfTestsContainer</Name>
+      <Project>{8f817cff-d513-44fb-8051-8b5e31a69e0c}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>

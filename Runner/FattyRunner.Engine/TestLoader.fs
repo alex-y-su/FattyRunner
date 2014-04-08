@@ -25,8 +25,10 @@ module TestLoader =
           Init    = init
           Dispose = desp }:TestReference
     
-    let mergeConfigs c (g:EnvironmentConfiguration) =
-        c
+    let mergeConfigs (c: TestConfiguration) (g:EnvironmentConfiguration) =
+        match g.Count with
+        | Some(n) -> { c with Count = n }
+        | _ -> c
 
     let tryLoadAssembly (s:string) =
         try 

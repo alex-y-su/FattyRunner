@@ -7,6 +7,20 @@ module ``Console runner tests`` =
     open FattyRunner.Client
 
     [<Fact>]
+    let ``End to end test should pass``() =
+        let sb = new System.Text.StringBuilder()
+        use tw = new System.IO.StringWriter(sb)
+        System.Console.SetOut(tw)
+        
+        let dir = System.AppDomain.CurrentDomain.BaseDirectory
+        let fn = System.IO.Path.Combine(dir,"PerfTestsContainer.dll")
+        let args = [| sprintf "path:%s" fn; "n:20" |]
+        ConsoleRunner.run args |> should equal 0
+       
+        do tw.Flush()
+        sb.ToString().Split('\n').Length |> should equal 20
+
+    [<Fact>]
     let ``Should print help when args are wrong`` () =
         let sb = new System.Text.StringBuilder()
         use tw = new System.IO.StringWriter(sb)
