@@ -7,6 +7,20 @@ module ``Console runner tests`` =
     open FattyRunner.Client
 
     [<Fact>]
+    let ``Should print help when args are wrong`` () =
+        let sb = new System.Text.StringBuilder()
+        use tw = new System.IO.StringWriter(sb)
+        System.Console.SetOut(tw)
+        let args = [|"123456"|]
+        ConsoleRunner.run args |> ignore
+        do tw.Flush()
+        let res = sb.ToString().Contains("n:[number]") &&
+                  sb.ToString().Contains("path:[path]") &&
+                  sb.ToString().Contains("test:[name]")
+        res |> should be True
+
+
+    [<Fact>]
     let ``Should parse path to assembly``() =
         let args = [@"path:C:\Dir\Path"]
 

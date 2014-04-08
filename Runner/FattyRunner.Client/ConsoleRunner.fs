@@ -25,7 +25,7 @@ module ConfigurationHelpers =
         else None
     
     let defaultConfiguration = 
-            { AssemblyLocation = System.AppDomain.CurrentDomain.BaseDirectory
+            { AssemblyLocation = ""
               TestList = []
               IterationsCount = None }
 
