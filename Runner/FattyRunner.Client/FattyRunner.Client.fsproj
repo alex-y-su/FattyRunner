@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Behavior\ConverterBase.fs" />
     <Compile Include="Behavior\StringExistsToVisibilityConverter.fs" />
+    <Compile Include="ConsoleRunner.fs" />
     <Compile Include="App.fs" />
     <Resource Include="ApplicationResources.xaml">
       <Generator>MSBuild:Compile</Generator>
