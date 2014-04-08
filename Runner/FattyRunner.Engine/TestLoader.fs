@@ -57,8 +57,8 @@ module TestLoader =
             let disp = t.DeclaredMethods |> Seq.tryFind isDisposeMethod
             let createTest' m =
                 let c = getTestConfiguration t m
-                    { Reference = createTestRference t m init disp
-                      Configuration = mergeConfigs c cfg }:Test                
+                { Reference = createTestRference t m init disp
+                  Configuration = mergeConfigs c cfg }:Test                
             methods |> Seq.map createTest'
         
         types |> Seq.map createTest |> Seq.concat
