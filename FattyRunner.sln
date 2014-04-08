@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Runner", "Runner", "{CDBB96F6-750E-4A39-A2FA-CDF0C59E1B7D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E9D56F1D-0F26-41AC-90A8-2BB8814C6D61}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FattyRunner.Engine", "Runner\FattyRunner.Engine\FattyRunner.Engine.fsproj", "{A08E2DFC-C34F-4353-AF50-25139A51551D}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FattyRunner.Engine.Tests", "Tests\FattyRunner.Engine.Tests\FattyRunner.Engine.Tests.fsproj", "{82898601-EA61-47E8-8FE0-00A3E8239124}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FattyRunner.Tests", "Tests\FattyRunner.Engine.Tests\FattyRunner.Tests.fsproj", "{82898601-EA61-47E8-8FE0-00A3E8239124}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FattyRunner.Interfaces", "FattyRunner.Interfaces\FattyRunner.Interfaces.csproj", "{481C3E67-3821-4E01-B3D8-851EA5C97953}"
 EndProject
