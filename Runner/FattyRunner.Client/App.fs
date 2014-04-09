@@ -7,10 +7,6 @@ open System.Windows.Markup
 
 open FattyRunner.Client
 
-// Create the View and bind it to the View Model
-let mainWindowViewModel = Application.LoadComponent(
-                             new System.Uri("/App;component/mainwindow.xaml", UriKind.Relative)) :?> Window
-
 //mainWindowViewModel.DataContext <- new MainWindowViewModel() 
 
 // Application Entry point
@@ -18,4 +14,8 @@ let mainWindowViewModel = Application.LoadComponent(
 [<EntryPoint>]
 let main args =
     if args.Length > 0 then ConsoleRunner.run args
-    else (new Application()).Run(mainWindowViewModel)
+    else
+        let mainWindowViewModel = 
+            Application.LoadComponent(new System.Uri("MainWindow.xaml", UriKind.Relative)) :?> Window 
+        (new Application()).Run(mainWindowViewModel)
+    

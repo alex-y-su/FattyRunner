@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>FattyRunner</id>
+    <version>0.0.1.2</version>
+    <title>FattyRunner - load tests runner</title>
+    <authors>Alexey Suvorov</authors>
+    <owners>Alexey Suvorov</owners>
+    <projectUrl>https://github.com/alexeysuvorov/FattyRunner</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Load test runner. Supposed to be used for fast and general check of algorithms and implementations.</description>
+    <copyright>Copyright Alexey Suvorov 2014</copyright>
+    <tags>Load Test Runner F#</tags>
+  </metadata>
+  <files>
+    <file src="Runner\FattyRunner.Client\bin\Release\FattyRunner.Interfaces.dll" target="lib\FattyRunner.Interfaces.dll" />
+
+    <file src="Runner\FattyRunner.Client\bin\Release\FattyRunner.Interfaces.dll" target="client\FattyRunner.Interfaces.dll" />
+    
+    <file src="Runner\FattyRunner.Client\bin\Release\Azon.Helpers.dll" target="client\Azon.Helpers.dll" />
+    <file src="Runner\FattyRunner.Client\bin\Release\FSharp.Core.dll" target="client\FSharp.Core.dll" />
+    <file src="Runner\FattyRunner.Client\bin\Release\Newtonsoft.Json.dll" target="client\Newtonsoft.Json.dll" />
+    <file src="Runner\FattyRunner.Client\bin\Release\Caliburn.PresentationFramework.dll" target="client\Caliburn.PresentationFramework.dll" />
+    
+    <file src="Runner\FattyRunner.Client\bin\Release\FattyRunner.Client.exe" target="client\FattyRunner.Client.exe" />
+    <file src="Runner\FattyRunner.Client\bin\Release\FattyRunner.Client.exe.config" target="client\FattyRunner.Client.exe.config" />
+    <file src="Runner\FattyRunner.Client\bin\Release\App.config" target="client\App.config" />
+    <file src="Runner\FattyRunner.Client\bin\Release\FattyRunner.Engine.dll" target="client\FattyRunner.Engine.dll" />
+  </files>
+</package>

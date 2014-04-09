@@ -27,7 +27,8 @@ module TestRunnerEngine =
     
     let runTest (cfg:EnvironmentConfiguration) (t : Test) = 
         do prepareEnvironment cfg
-        let instance = ReflectionHelper.instantiate t.Reference.Type cfg.Context
+        let instance = 
+            ReflectionHelper.instantiate t.Reference.Type cfg.Context
         
         let before() = 
             match t.Reference.Init with
