@@ -76,7 +76,8 @@ module TestRunnerEngine =
             |> Seq.toList
         
         do shutdownEnvironment cfg
-        { TestName = t.Reference.Type.FullName; Timings = timings} : TestResult
+        let testName = sprintf "%s.%s" t.Reference.Type.FullName t.Reference.Run.Name
+        { TestName = testName; Timings = timings} : TestResult
     
     let run (tests : Test list) (cfg: EnvironmentConfiguration) : TestResult list = 
         tests |> List.map (runTest cfg)

@@ -5,6 +5,13 @@ using System.Diagnostics;
 using FattyRunner.Interfaces;
 
 namespace PerfTestsContainer {
+    public class FilterByNameRabbit {
+        [FatTest]
+        public void Some() {
+            
+        }
+    }
+
     public class WerboseConsoleTets {
         private int _n;
 

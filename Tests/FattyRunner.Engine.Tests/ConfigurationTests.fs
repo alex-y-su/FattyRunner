@@ -38,7 +38,7 @@ module ``Assembly reading test`` =
     let ``Global config count should override attribute iterations count``()=
         let gcfg = { Context = None; Count = Some(999u) }
         let t = typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>
-        let test = TestLoader.loadTests t.Assembly gcfg 
+        let test = TestLoader.loadTests gcfg t.Assembly
                    |> Seq.find (fun x -> x.Reference.Type = t)
         let actual = test.Configuration
         actual.Equals({ Count = 999u; WarmUp = 150u; ProgressiveStep = 300u })
@@ -47,7 +47,7 @@ module ``Assembly reading test`` =
     [<Fact>]
     let ``Should read configuration from attribute``() =
         let t = typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>
-        let test = TestLoader.loadTests t.Assembly emptyGConf 
+        let test = TestLoader.loadTests emptyGConf t.Assembly
                    |> Seq.find (fun x -> x.Reference.Type = t)
         
         let actual = test.Configuration
@@ -71,7 +71,7 @@ module ``Assembly reading test`` =
     [<Fact>]
     let ``Assembly loader should find all types with fatty methods``() =
         let asm = typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>.Assembly
-        let tests = TestLoader.loadTests asm emptyGConf |> Seq.toList
+        let tests = TestLoader.loadTests emptyGConf asm |> Seq.toList
 
         tests.IsEmpty |> should be False
         tests.Length |> should equal 2

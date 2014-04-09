@@ -48,7 +48,7 @@ module TestLoader =
 
     let loadAssemblyFromFile = tryLoadAssembly
 
-    let loadTests (asm: Assembly) (cfg:EnvironmentConfiguration) = 
+    let loadTests (cfg:EnvironmentConfiguration) (asm: Assembly) = 
         let types = query { for x in asm.DefinedTypes do
                             where (x.DeclaredMethods |> Seq.exists isFattyMethod)
                             select x }
