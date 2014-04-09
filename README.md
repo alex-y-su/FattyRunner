@@ -37,19 +37,29 @@ Example of class decorated by FatRunner attributes:
         }
     }
 
-Console client parameters:
+Installation 
+============
+
+**NuGet**
+
+	PM> Install-Package FattyRunner
+
+You can find **FattyRunner.Client.exe** in **packages**\FattyRunner[version]\client. 
+Right now it provides only command line interface.  
+
+**Console client parameters:**
 
 	n:[number]  - Count of iterations
-	path:[path] - File or directory where test assemblies are located.\n 
-				  Can be used multiple times.
-	test:[name] - Full class name + method name like ""MyNamespace.MyClass.MethodToTest"".\n
-	              Can be used multiple times.
-
+	path:[path] - Path to assembly file. Can be used multiple times.
+	test:[name] - Full class name + method name like ""MyNamespace.MyClass.MethodToTest"".
+	              Can be used multiple times. If not defined then all tests will be runned.
+	out:[path]  - Specify file when execution results will be stored.
+				  If file already exists it will be overridden.
 
 
 FattyRunner written on F# except C# assemblies with attributes.
 
-Near plans:
+**Planned:**
 
 * Results report comparer
 * WPF UI 

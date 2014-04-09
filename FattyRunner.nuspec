@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>FattyRunner</id>
-    <version>0.0.1.2</version>
+    <version>0.0.1.5</version>
     <title>FattyRunner - load tests runner</title>
     <authors>Alexey Suvorov</authors>
     <owners>Alexey Suvorov</owners>
@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Load test runner. Supposed to be used for fast and general check of algorithms and implementations.</description>
     <copyright>Copyright Alexey Suvorov 2014</copyright>
-    <tags>Load Test Runner F#</tags>
+    <tags>Load Test Runner</tags>
   </metadata>
   <files>
     <file src="Runner\FattyRunner.Client\bin\Release\FattyRunner.Interfaces.dll" target="lib\FattyRunner.Interfaces.dll" />
