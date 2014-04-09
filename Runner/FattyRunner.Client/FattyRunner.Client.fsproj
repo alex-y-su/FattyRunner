@@ -26,6 +26,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DocumentationFile>bin\Debug\App.XML</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
+    <StartArguments>asm:"C:\Users\Alexey\Documents\Visual Studio 2013\Projects\ClassLibrary1\ConsoleApplication1\bin\Debug\ConsoleApplication1.dll"</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>

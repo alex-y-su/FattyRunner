@@ -12,7 +12,7 @@ module ConfigurationHelpers =
     let normalize (s : string) = s.SubstringAfter ":"
     
     let (|Location|_|) (s : string) = 
-        if s.StartsWith("path:") then Some(normalize s)
+        if s.StartsWith("path:") || s.StartsWith("asm:") then Some(normalize s)
         else None
 
     let (|Out|_|) (s : string) = 

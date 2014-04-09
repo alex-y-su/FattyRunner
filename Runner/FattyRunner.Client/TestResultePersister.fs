@@ -9,6 +9,4 @@ module TestResultePersister =
         { Tests: TestResult seq }
     
     let serialize (tests: TestResult seq) =
-        let container = { Tests = tests }
-        JsonConvert.SerializeObject container
-
+        JsonConvert.SerializeObject({ Tests = tests }, Formatting.Indented)

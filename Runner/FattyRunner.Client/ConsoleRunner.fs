@@ -68,5 +68,5 @@ module ConsoleRunner =
         use sw = System.IO.File.CreateText fileName
         let res = TestResultePersister.serialize results 
         sw.Write(res)
-        
+        do sw.Flush()
         0
