@@ -51,13 +51,13 @@ Right now it provides only command line interface.
 
 	n:[number]  - Count of iterations
 	path:[path] - Path to assembly file. Can be used multiple times.
-	test:[name] - Full class name + method name like ""MyNamespace.MyClass.MethodToTest"".
+	test:[name] - Full class name + method name like "MyNamespace.MyClass.MethodToTest".
 	              Can be used multiple times. If not defined then all tests will be runned.
 	out:[path]  - Specify file when execution results will be stored.
 				  If file already exists it will be overridden.
 
 
-FattyRunner written on F# except C# assemblies with attributes.
+FattyRunner is written on F# except C# assemblies with attributes.
 
 **Planned:**
 
