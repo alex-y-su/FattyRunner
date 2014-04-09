@@ -42,7 +42,8 @@ module ConsoleRunner =
         let filter (t:Test) =
             if not(testNames.Any()) then true
             else
-                let name = sprintf "%s.%s" t.Reference.Type.FullName t.Reference.Run.Name
+                let r = t.Reference
+                let name = sprintf "%s.%s" r.Type.FullName r.Run.Name
                 testNames.Contains name
         
         let tests = match cfg.AssemblyLocation with
@@ -67,4 +68,5 @@ module ConsoleRunner =
         use sw = System.IO.File.CreateText fileName
         let res = TestResultePersister.serialize results 
         sw.Write(res)
+        
         0
