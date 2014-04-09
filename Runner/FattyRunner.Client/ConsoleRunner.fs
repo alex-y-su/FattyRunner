@@ -3,6 +3,7 @@
 type RunConfiguration = 
     { AssemblyLocation : string
       TestList : string list
+      PathToOutputFile: string option
       IterationsCount : uint32 option }
 
 module ConfigurationHelpers = 
@@ -12,6 +13,10 @@ module ConfigurationHelpers =
     
     let (|Location|_|) (s : string) = 
         if s.StartsWith("path:") then Some(normalize s)
+        else None
+
+    let (|Out|_|) (s : string) = 
+        if s.StartsWith("out:") then Some(normalize s)
         else None
     
     let (|Test|_|) (s : string) = 
@@ -27,6 +32,7 @@ module ConfigurationHelpers =
     let defaultConfiguration =
             { AssemblyLocation = ""
               TestList = []
+              PathToOutputFile = None
               IterationsCount = None }
 
 
@@ -37,8 +43,9 @@ module ConfigurationHelpers =
                 let cfg' = 
                     match h with
                     | Location(x) -> { cfg with AssemblyLocation = x }
-                    | Test(x) -> { cfg with TestList = cfg.TestList @ [ x ] }
-                    | Count(x) -> { cfg with IterationsCount = Some(x) }
+                    | Out(x)      -> { cfg with PathToOutputFile = Some(x) }
+                    | Test(x)     -> { cfg with TestList = cfg.TestList @ [ x ] }
+                    | Count(x)    -> { cfg with IterationsCount = Some(x) }
                     | _ -> cfg
                 read' t cfg'
             | [] -> cfg
@@ -104,4 +111,13 @@ module ConsoleRunner =
         let cfg = readConfigFromArgs (args |> List.ofArray)
         let results = runForConfig cfg
         
+        let fileName = 
+            match cfg.PathToOutputFile with
+            | Some(f) -> f
+            | _ -> "Results.json"
+
+        use sw = System.IO.File.CreateText fileName
+        let res = TestResultePersister.serialize results 
+        sw.Write(res)
+
         0
