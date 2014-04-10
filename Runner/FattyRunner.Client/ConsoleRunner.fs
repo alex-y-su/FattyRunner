@@ -1,5 +1,11 @@
 ﻿namespace FattyRunner.Client
 
+type ConsoleLogger() =
+    interface FattyRunner.Interfaces.IFatLogger with
+        member this.Write (fmt,args) =
+            let s = System.String.Format(fmt,args)
+            System.Console.WriteLine(s)
+
 module ConsoleRunner = 
     open System.Linq
     open Azon.Helpers.Extensions
@@ -35,7 +41,7 @@ module ConsoleRunner =
 
     let runForConfig (cfg: RunConfiguration) =
         let envConf : EnvironmentConfiguration =
-            { Count = cfg.IterationsCount; Context = None }
+            { Count = cfg.IterationsCount; Logger = new ConsoleLogger() }
 
         let testNames = cfg.TestList |> Set.ofList
         

@@ -21,7 +21,7 @@ module ``Engine objects tests`` =
             { Reference = createTestRef typeof<TestTypeWithoutCtor> "Run"
               Configuration = config }
         
-        TestRunnerEngine.runTest { Context = None; Count = None } |> ignore
+        TestRunnerEngine.runTest { Logger = EmptyLogger.Instance; Count = None } |> ignore
 
 module ``Assembly reading test`` =
     open Xunit
@@ -32,11 +32,11 @@ module ``Assembly reading test`` =
     open NHamcrest
     open NHamcrest.Core
 
-    let emptyGConf = { Context = None; Count = None }
+    let emptyGConf = { Count = None; Logger = null }
 
     [<Fact>]
     let ``Global config count should override attribute iterations count``()=
-        let gcfg = { Context = None; Count = Some(999u) }
+        let gcfg = { Count = Some(999u); Logger = null }
         let t = typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>
         let test = TestLoader.loadTests gcfg t.Assembly
                    |> Seq.find (fun x -> x.Reference.Type = t)
@@ -75,11 +75,3 @@ module ``Assembly reading test`` =
 
         tests.IsEmpty |> should be False
         tests.Length |> should equal 2
-        
-        tests |> List.filter (fun x-> Option.isSome x.Reference.Init) 
-              |> List.length 
-              |> should equal 1
-        
-        tests |> List.filter (fun x-> Option.isSome x.Reference.Dispose) 
-              |> List.length 
-              |> should equal 1

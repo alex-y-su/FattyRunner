@@ -23,6 +23,7 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FattyRunner.Client", "Runne
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".SolutionItems", ".SolutionItems", "{4DBBC6E7-3B9A-4B92-B75E-0664EB640DB9}"
 	ProjectSection(SolutionItems) = preProject
+		EndToEndRun.fsx = EndToEndRun.fsx
 		FattyRunner.nuspec = FattyRunner.nuspec
 		README.md = README.md
 	EndProjectSection

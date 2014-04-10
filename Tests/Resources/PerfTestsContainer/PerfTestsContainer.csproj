@@ -39,8 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FilterByNameRabbit.cs" />
     <Compile Include="TestDictionaryInsertion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WerboseConsoleTets.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\FattyRunner.Interfaces\FattyRunner.Interfaces.csproj">

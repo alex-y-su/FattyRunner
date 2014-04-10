@@ -1,5 +1,11 @@
 ﻿namespace FattyRunner.Engine.Tests
 
+type EmptyLogger() =
+    interface FattyRunner.Interfaces.IFatLogger with
+        member this.Write (_,__) = ()
+    static member Instance
+        with get() = new EmptyLogger()
+
 module ReflectiponHelpers = 
     open System
     open System.Reflection
@@ -14,6 +20,4 @@ module TestHelpers =
     let createTestRef (t : System.Type) mName = 
         let m = getMethodReference t mName
         { Type = t
-          Run = m
-          Init = None
-          Dispose = None } : TestReference
+          Run = m } : TestReference

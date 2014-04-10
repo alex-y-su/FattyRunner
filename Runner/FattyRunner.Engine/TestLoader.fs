@@ -8,8 +8,6 @@ module TestLoader =
 
     let fatAttrType = typeof<FattyRunner.Interfaces.FatTestAttribute>
     let isFattyMethod = markedByAttr fatAttrType
-    let isDisposeMethod = markedByAttr typeof<FattyRunner.Interfaces.FatCleanupAttribute>
-    let isInitMethod = markedByAttr typeof<FattyRunner.Interfaces.FatInitAttribute>
 
     let getTestConfiguration (t:TypeInfo) (m:MethodInfo) =
         let attr = m.GetCustomAttribute(fatAttrType) 
@@ -19,11 +17,9 @@ module TestLoader =
           WarmUp = attr.WarmUpIterations
           ProgressiveStep = attr.Step }:TestConfiguration
 
-    let createTestRference t m init desp =
+    let createTestRference t m =
         { Type    = t:>System.Type
-          Run     = m
-          Init    = init
-          Dispose = desp }:TestReference
+          Run     = m }:TestReference
     
     let mergeConfigs (c: TestConfiguration) (g:EnvironmentConfiguration) =
         match g.Count with
@@ -55,11 +51,9 @@ module TestLoader =
         
         let createTest (t: TypeInfo) =
             let methods = t.DeclaredMethods |> Seq.filter isFattyMethod
-            let init = t.DeclaredMethods |> Seq.tryFind isInitMethod
-            let disp = t.DeclaredMethods |> Seq.tryFind isDisposeMethod
             let createTest' m =
                 let c = getTestConfiguration t m
-                { Reference = createTestRference t m init disp
+                { Reference = createTestRference t m
                   Configuration = mergeConfigs c cfg }:Test                
             methods |> Seq.map createTest'
         

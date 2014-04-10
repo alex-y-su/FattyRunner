@@ -2,9 +2,7 @@
 
 type TestReference = 
     { Type : System.Type
-      Run : System.Reflection.MethodInfo
-      Init : System.Reflection.MethodInfo option
-      Dispose : System.Reflection.MethodInfo option }
+      Run : System.Reflection.MethodInfo }
 
 type TestConfiguration = 
     { Count : uint32
@@ -19,8 +17,8 @@ type Configuration =
     { TestsToRun : Test list }
 
 type EnvironmentConfiguration = 
-    { Context : Map<string, obj> option
-      Count : uint32 option }
+    { Logger : FattyRunner.Interfaces.IFatLogger
+      Count  : uint32 option }
 
 type TimeMeasure = 
     { IterationCount: uint32

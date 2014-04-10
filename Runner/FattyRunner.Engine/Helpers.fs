@@ -4,12 +4,26 @@ module ReflectionHelper =
     open System
     open System.Reflection
     
-    let getAttributeInstance (m:MethodInfo) (attrType: CustomAttributeData) =
-        ()
+    let contextType = typeof<FattyRunner.Interfaces.ExternalContext>
 
-    let instantiate (t : Type) (cts: Map<string,obj> option) = 
-        match cts with
-        | Some(cts) -> 
-            Activator.CreateInstance(t, [| cts :> obj |])
-        | None -> 
-            Activator.CreateInstance(t, null)
+    let implements (implemented:Type) (implementor:Type) =
+        implemented.IsAssignableFrom implementor
+
+    let implementsDispose t = implements typeof<IDisposable> t
+
+    let getDisposeReference (t: Type) =
+        if implements typeof<IDisposable> t then
+            Some(typeof<IDisposable>.GetMethod("Dispose"))
+        else None
+
+    let instantiate (t : Type) (cts: FattyRunner.Interfaces.ExternalContext) = 
+        let parameteredCtor = t.GetConstructor([|contextType|])
+        if null = parameteredCtor then Activator.CreateInstance(t, null) 
+        else Activator.CreateInstance(t, [| cts :> obj |])
+
+    let callOption instance (f:System.Reflection.MethodInfo option) =
+        match f with
+        | Some(f) -> f.Invoke(instance,null) |> ignore
+        | _ -> ()
+
+            
