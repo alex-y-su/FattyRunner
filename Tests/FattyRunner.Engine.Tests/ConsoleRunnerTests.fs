@@ -20,7 +20,11 @@ module ``Console runner tests`` =
         do tw.Flush()
         let res = sb.ToString()
         //n = 20 + 50 warm up (default) and 1 because of split
-        res.Split('\n').Length-1 |> should equal (20+50)
+        res.Contains("WerboseConsoleTets started with 20 iterations") 
+        |> should be True
+        res.Contains("WerboseConsoleTets completed with 70 real iterations") 
+        |> should be True
+        
 
     [<Fact>]
     let ``Should print help when args are wrong`` () =

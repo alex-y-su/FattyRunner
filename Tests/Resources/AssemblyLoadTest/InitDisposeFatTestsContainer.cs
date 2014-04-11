@@ -11,7 +11,6 @@ namespace AssemblyLoadTests {
 
         [FatTest]
         public void Test1() {
-            Thread.Sleep(1);
         }
 
         public void Dispose() {
