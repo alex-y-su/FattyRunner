@@ -104,8 +104,11 @@ Release Notes
 =============
 
 0.0.2.2
+
 * Data property added to ExternalContext, so user can pass some data throught attribute
 	
+Example:
+
 	public class A {
 		public A(ExternalContext ctx){
 			//Data will be 10 for Method1 runs
