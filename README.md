@@ -9,15 +9,18 @@ FatTest attribute source code with defaults:
     public class FatTestAttribute : Attribute {
         public FatTestAttribute(uint maxIterations = 1000u, 
                                 uint warmUpIterations = 50, 
-                                uint step = 100){
+                                uint step = 100,
+								object data = null){
             
             MaxIterations = maxIterations;
             WarmUpIterations = warmUpIterations;
             Step = step;
+			Data = data;
         }
         public uint MaxIterations { get; set; }
         public uint WarmUpIterations { get; set; }
         public uint Step { get; set; }
+		public object Data { get; set; }
     }
 
 Example of class decorated by FatRunner attributes:
@@ -35,7 +38,7 @@ Example of class decorated by FatRunner attributes:
         }
     }
 
-ExternalContext contains data about count of iterations for current instance, name of   test method and instance of IFatLogger implemented by runner. Test progress should be reported through this logger. 
+ExternalContext contains data about count of iterations for current instance, name of test method, optional user constatnt and instance of IFatLogger implemented by runner. Test progress should be reported through this logger. 
 
 Instance of class which contains FatTest will be created for each step for each method separately.
  
@@ -99,6 +102,22 @@ Copyright 2014 Alexey Suvorov - Provided under the [MIT license](https://github.
 
 Release Notes
 =============
+
+0.0.2.2
+* Data property added to ExternalContext, so user can pass some data throught attribute
+	public class A {
+		public A(ExternalContext ctx){
+			//Data will be 10 for Method1 runs
+			//and 20 for Method2 runs
+			ctx.Logger.Write("Entropy: {0}", ctx.Data);
+		}
+		
+		FatTest(Data = 10)
+		public void Method1(){}
+
+		FatTest(maxIterations = 100u, warmUpIterations=0u,step=25u,data=20)
+		public void Method2(){}
+	}
 
 0.0.2.0
 
