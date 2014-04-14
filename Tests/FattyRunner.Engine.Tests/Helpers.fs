@@ -20,4 +20,5 @@ module TestHelpers =
     let createTestRef (t : System.Type) mName = 
         let m = getMethodReference t mName
         { Type = t
-          Run = m } : TestReference
+          Run = m 
+          AfterWarmUp = None} : TestReference

@@ -2,7 +2,8 @@
 
 type TestReference = 
     { Type : System.Type
-      Run : System.Reflection.MethodInfo }
+      Run : System.Reflection.MethodInfo
+      AfterWarmUp: System.Reflection.MethodInfo option }
 
 type TestConfiguration = 
     { Count : uint32

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>FattyRunner</id>
-    <version>0.0.2.2</version>
+    <version>0.0.2.3</version>
     <title>FattyRunner - load tests runner</title>
     <authors>Alexey Suvorov</authors>
     <owners>Alexey Suvorov</owners>

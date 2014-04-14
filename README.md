@@ -38,11 +38,12 @@ Example of class decorated by FatRunner attributes:
         }
     }
 
+**ExternalContext**
+
 ExternalContext contains data about count of iterations for current instance, name of test method, optional user constatnt and instance of IFatLogger implemented by runner. Test progress should be reported through this logger. 
 
-Instance of class which contains FatTest will be created for each step for each method separately.
- 
-For example:
+Instance of class which contains FatTest will be created for each step for each method separately. 
+Example: 
 
 	public class A {
 		public A(ExternalContext ctx){
@@ -56,6 +57,7 @@ For example:
 		FatTest(maxIterations = 100u, warmUpIterations=0u,step=25u)
 		public void Method2(){}
 	}
+
 Here instance of class A will be created 6 times and console output will be:
 
 	Test: Method1 N:5
@@ -64,6 +66,21 @@ Here instance of class A will be created 6 times and console output will be:
 	Test: Method2 N:50
 	Test: Method2 N:75
 	Test: Method2 N:100
+
+
+**After warm up attribute**
+
+You can call some code just after warm up but before actual test call
+
+	public class InitDisposeFatTestsContainer {
+        [FatAfterWarmup]
+        public void Reset() {
+			//reset some counters e.t.c.
+		}
+
+        [FatTest]
+        public void Test1() {}
+    }
 
 
 Installation 

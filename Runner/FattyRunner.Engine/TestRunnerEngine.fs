@@ -26,6 +26,7 @@ module TestRunnerEngine =
         | 0u -> () 
         | x  -> seq {1..int x } |> Seq.iter (fun _-> fu() |> ignore)
         
+        ReflectionHelper.callOption instance t.Reference.AfterWarmUp
         do System.Threading.Thread.Sleep(5)
 
         let sw = Stopwatch.StartNew();
