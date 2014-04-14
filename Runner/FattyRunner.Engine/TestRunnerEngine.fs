@@ -41,8 +41,10 @@ module TestRunnerEngine =
         do prepareEnvironment cfg
 
         let ctor iters =
+            let userData = if Option.isNone t.Configuration.Data then null
+                           else Option.get t.Configuration.Data 
             let stepContext =
-                new ExternalContext(iters,t.Reference.Run.Name, cfg.Logger)
+                new ExternalContext(iters,t.Reference.Run.Name, cfg.Logger, userData)
             ReflectionHelper.instantiate t.Reference.Type stepContext
 
         let decoratedExecute n = 

@@ -2,6 +2,7 @@
 
 module TestLoader =
     open System.Reflection
+    open ReflectionHelper
 
     let markedByAttr t (m:MethodInfo) =
             m.CustomAttributes |> Seq.exists (fun a -> a.AttributeType = t)
@@ -15,7 +16,8 @@ module TestLoader =
         
         { Count = attr.MaxIterations
           WarmUp = attr.WarmUpIterations
-          ProgressiveStep = attr.Step }:TestConfiguration
+          ProgressiveStep = attr.Step 
+          Data = if null=attr.Data then None else Some(attr.Data) }:TestConfiguration
 
     let createTestRference t m =
         { Type    = t:>System.Type

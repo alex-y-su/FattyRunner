@@ -46,3 +46,5 @@ else
     let notFound = absPaths |> List.filter (not << exists)
     notFound |> printfn "======================= These files was not found: ====================\n %A 
                         \n====================================================================="
+
+#quit

@@ -7,7 +7,8 @@ type TestReference =
 type TestConfiguration = 
     { Count : uint32
       WarmUp : uint32
-      ProgressiveStep: uint32 }
+      ProgressiveStep: uint32
+      Data: obj option }
 
 type Test = 
     { Reference : TestReference

@@ -1,28 +1,5 @@
 ﻿namespace FattyRunner.Engine.Tests
 
-module ``Engine objects tests`` = 
-    open Xunit
-    open FsUnit.Xunit
-    open FattyRunner.Engine
-    open ReflectiponHelpers
-    open TestHelpers
-    
-    type TestTypeWithoutCtor() = 
-        member x.Run() = ()
-    
-    [<Fact>]
-    let ``Test without context can create instance of type with empty ctor``() = 
-        let config = 
-            { Count = 1u
-              ProgressiveStep = 1u
-              WarmUp = 0u }
-        
-        let test : Test = 
-            { Reference = createTestRef typeof<TestTypeWithoutCtor> "Run"
-              Configuration = config }
-        
-        TestRunnerEngine.runTest { Logger = EmptyLogger.Instance; Count = None } |> ignore
-
 module ``Assembly reading test`` =
     open Xunit
     open FsUnit.Xunit
@@ -41,7 +18,7 @@ module ``Assembly reading test`` =
         let test = TestLoader.loadTests gcfg t.Assembly
                    |> Seq.find (fun x -> x.Reference.Type = t)
         let actual = test.Configuration
-        actual.Equals({ Count = 999u; WarmUp = 150u; ProgressiveStep = 300u })
+        actual.Equals({ Count = 999u; WarmUp = 150u; ProgressiveStep = 300u; Data = Some("UserData" :> obj) })
         |> should be True
 
     [<Fact>]
@@ -51,7 +28,7 @@ module ``Assembly reading test`` =
                    |> Seq.find (fun x -> x.Reference.Type = t)
         
         let actual = test.Configuration
-        actual.Equals({ Count = 3000u; WarmUp = 150u; ProgressiveStep = 300u })
+        actual.Equals({ Count = 3000u; WarmUp = 150u; ProgressiveStep = 300u; Data = Some("UserData" :> obj) })
         |> should be True
 
     [<Fact>]

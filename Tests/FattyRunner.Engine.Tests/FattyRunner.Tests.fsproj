@@ -70,8 +70,9 @@
     <None Include="app.config" />
     <Compile Include="Helpers.fs" />
     <Compile Include="ConsoleRunnerTests.fs" />
-    <Compile Include="ConfigurationTests.fs" />
+    <Compile Include="ObjectCrationTests.fs" />
     <Compile Include="CounterTests.fs" />
+    <Compile Include="ConfigurationTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FattyRunner.Interfaces\FattyRunner.Interfaces.csproj">

@@ -36,7 +36,8 @@ module ``Engine counter tests`` =
         let config = 
             { Count = 1000000u
               ProgressiveStep = 1000000u
-              WarmUp = 0u }
+              WarmUp = 0u
+              Data = None }
         
         let test : Test = 
             { Reference = createTestRef typeof<TestType> "Run"
@@ -52,7 +53,8 @@ module ``Engine counter tests`` =
         let config = 
             { Count = 10u
               ProgressiveStep = 1u
-              WarmUp = 0u }
+              WarmUp = 0u
+              Data = None }
         
         let test : Test = 
             { Reference = createTestRef typeof<TestType> "Run"
@@ -74,7 +76,8 @@ module ``Engine counter tests`` =
         let config = 
             { Count = 10u
               ProgressiveStep = 1u
-              WarmUp = 0u }
+              WarmUp = 0u
+              Data = None }
         
         let test : Test = 
             { Reference = createTestRef typeof<TestType> "Run"
@@ -90,7 +93,8 @@ module ``Engine counter tests`` =
         let config = 
             { Count = 10u
               ProgressiveStep = 1u
-              WarmUp = 0u }
+              WarmUp = 0u
+              Data = None }
         
         let test : Test = 
             { Reference = createTestRef typeof<TestType> "Run"
@@ -106,7 +110,8 @@ module ``Engine counter tests`` =
         let config = 
             { Count = 1u
               ProgressiveStep = 1u
-              WarmUp = 10u }
+              WarmUp = 10u
+              Data = None }
         
         let test : Test = 
             { Reference = createTestRef typeof<TestType> "Run"
