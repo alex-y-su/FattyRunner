@@ -13,7 +13,7 @@ module ConsoleRunner =
     open FattyRunner.Engine
 
     [<Literal>]
-    let helpMessage = @"Usage: 
+    let private helpMessage = @"Usage: 
                         n:[number]  - Count of iterations
 
                         path:[path] - File or directory where test assemblies are located.\n 
@@ -22,18 +22,18 @@ module ConsoleRunner =
                         test:[name] - Full class name + method name like ""MyNamespace.MyClass.MethodToTest"".\n
                                       Can be used multiple times."
 
-    let writeConfigurationIncorrect() =
+    let private writeConfigurationIncorrect() =
         printfn "%s" helpMessage
         List<Test>.Empty
 
     let testsFromFile (s:string) (envConf) = 
-        let asm = TestLoader.loadAssemblyFromFile s
+        let asm = AssemblyHelpers.loadAssemblyFromFile s
         match asm with 
         | Some(asm) -> TestLoader.loadTests envConf asm |> Seq.toList
         | _ -> List<Test>.Empty
 
     let testsFromDir (s:string) envConf = 
-        let assemblies =  TestLoader.loadAllAssembliesFromDirectory s
+        let assemblies =  AssemblyHelpers.loadAllAssembliesFromDirectory s
 
         assemblies |> Seq.map (TestLoader.loadTests envConf)
                    |> Seq.concat

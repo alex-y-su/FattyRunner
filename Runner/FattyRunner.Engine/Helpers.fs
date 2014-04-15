@@ -1,6 +1,6 @@
 ﻿namespace FattyRunner.Engine
 
-module ReflectionHelper = 
+module internal ReflectionHelper = 
     open System
     open System.Reflection
     
@@ -25,5 +25,17 @@ module ReflectionHelper =
         match f with
         | Some(f) -> f.Invoke(instance,null) |> ignore
         | _ -> ()
+
+    let markedByAttr t (m:MethodInfo) =
+            m.CustomAttributes |> Seq.exists (fun a -> a.AttributeType = t)
+
+    let tryLoadAssembly (s:string) =
+        try 
+            let testAssembly = System.Reflection.AssemblyName.GetAssemblyName(s)
+            Some(System.Reflection.Assembly.LoadFile(s))
+        with
+        | :? System.IO.FileNotFoundException -> None
+        | :? System.BadImageFormatException -> None
+        | :? System.IO.FileLoadException -> None
 
             

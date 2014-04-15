@@ -4,6 +4,8 @@ module ``Assembly reading test`` =
     open Xunit
     open FsUnit.Xunit
     open FattyRunner.Engine
+    open FattyRunner.Client
+
     open ReflectiponHelpers
     open TestHelpers
     open NHamcrest
@@ -35,7 +37,7 @@ module ``Assembly reading test`` =
     let ``Should find proper assemblies in directory``() =
         let dir = System.AppDomain.CurrentDomain.BaseDirectory
         let foundAssemblies = 
-            TestLoader.loadAllAssembliesFromDirectory dir |> Seq.toList
+            AssemblyHelpers.loadAllAssembliesFromDirectory dir |> Seq.toList
         let expectedName = 
             typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>.Assembly.FullName
         

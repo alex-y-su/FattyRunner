@@ -32,24 +32,6 @@ module TestLoader =
         | Some(n) -> { c with Count = n }
         | _ -> c
 
-    let tryLoadAssembly (s:string) =
-        try 
-            let testAssembly = System.Reflection.AssemblyName.GetAssemblyName(s);
-            System.Reflection.Assembly.LoadFile(s) |> Some
-        with
-        | :? System.IO.FileNotFoundException -> None
-        | :? System.BadImageFormatException -> None
-        | :? System.IO.FileLoadException -> None
-
-    let loadAllAssembliesFromDirectory (dir:string) =
-        let dir = System.AppDomain.CurrentDomain.BaseDirectory
-        let fileRecords = System.IO.Directory.GetFiles(dir,"*.dll")
-        fileRecords |> Seq.map tryLoadAssembly
-                    |> Seq.filter Option.isSome
-                    |> Seq.map Option.get
-
-    let loadAssemblyFromFile = tryLoadAssembly
-
     let loadTests (cfg:EnvironmentConfiguration) (asm: Assembly) = 
         let types = query { for x in asm.DefinedTypes do
                             where (x.DeclaredMethods |> Seq.exists isFattyMethod)

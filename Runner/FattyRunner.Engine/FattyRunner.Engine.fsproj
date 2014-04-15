@@ -44,7 +44,13 @@
   <ItemGroup>
     <Compile Include="Helpers.fs" />
     <Compile Include="DomainObjects.fs" />
+    <Compile Include="TestLoader.fsi">
+      <DependentUpon>TestLoader.fs</DependentUpon>
+    </Compile>
     <Compile Include="TestLoader.fs" />
+    <Compile Include="TestRunnerEngine.fsi">
+      <DependentUpon>TestRunnerEngine.fs</DependentUpon>
+    </Compile>
     <Compile Include="TestRunnerEngine.fs" />
   </ItemGroup>
   <ItemGroup>

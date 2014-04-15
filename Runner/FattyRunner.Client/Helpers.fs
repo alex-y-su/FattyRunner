@@ -50,3 +50,22 @@ module ConfigurationHelpers =
                 read' t cfg'
             | [] -> cfg
         read' args defaultConfiguration
+
+module internal AssemblyHelpers =
+    let tryLoadAssembly (s:string) =
+        try 
+            let testAssembly = System.Reflection.AssemblyName.GetAssemblyName(s);
+            System.Reflection.Assembly.LoadFile(s) |> Some
+        with
+        | :? System.IO.FileNotFoundException -> None
+        | :? System.BadImageFormatException -> None
+        | :? System.IO.FileLoadException -> None
+
+    let loadAllAssembliesFromDirectory (dir:string) =
+        let dir = System.AppDomain.CurrentDomain.BaseDirectory
+        let fileRecords = System.IO.Directory.GetFiles(dir,"*.dll")
+        fileRecords |> Seq.map tryLoadAssembly
+                    |> Seq.filter Option.isSome
+                    |> Seq.map Option.get
+
+    let loadAssemblyFromFile = tryLoadAssembly

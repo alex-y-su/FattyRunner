@@ -56,7 +56,8 @@
     <Compile Include="Behavior\ConverterBase.fs" />
     <Compile Include="Behavior\StringExistsToVisibilityConverter.fs" />
     <Compile Include="TestResultePersister.fs" />
-    <Compile Include="ConfigurationHelpers.fs" />
+    <Compile Include="Helpers.fs" />
+    <Compile Include="ConsoleRunner.fsi" />
     <Compile Include="ConsoleRunner.fs" />
     <Compile Include="App.fs" />
     <Resource Include="ApplicationResources.xaml">
