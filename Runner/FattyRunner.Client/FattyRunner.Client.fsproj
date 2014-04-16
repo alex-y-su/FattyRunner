@@ -2,11 +2,11 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{30597be9-08f8-4832-8ab7-009c00a6a2f2}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>FSharpWpfMvvmTemplate.App</RootNamespace>
     <AssemblyName>FattyRunner.Client</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -15,7 +15,7 @@
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -26,9 +26,10 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DocumentationFile>bin\Debug\App.XML</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
-    <StartArguments>asm:"C:\Users\Alexey\Documents\Visual Studio 2013\Projects\ClassLibrary1\ConsoleApplication1\bin\Debug\ConsoleApplication1.dll"</StartArguments>
+    <StartArguments>
+    </StartArguments>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <Tailcalls>true</Tailcalls>
@@ -53,21 +54,11 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" Condition="Exists('$(FSharpTargetsPath)')" />
   <ItemGroup>
-    <Compile Include="Behavior\ConverterBase.fs" />
-    <Compile Include="Behavior\StringExistsToVisibilityConverter.fs" />
     <Compile Include="TestResultePersister.fs" />
     <Compile Include="Helpers.fs" />
     <Compile Include="ConsoleRunner.fsi" />
     <Compile Include="ConsoleRunner.fs" />
     <Compile Include="App.fs" />
-    <Resource Include="ApplicationResources.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Resource>
-    <Resource Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Resource>
     <None Include="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -79,12 +70,12 @@
       <HintPath>..\..\packages\Azon.Helpers.1.0.0.36\lib\NET40\Azon.Helpers.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Caliburn.Core">
-      <HintPath>..\..\packages\Caliburn.2.0\lib\net40\Caliburn.Core.dll</HintPath>
+    <Reference Include="Caliburn.Micro">
+      <HintPath>..\..\packages\Caliburn.Micro.1.5.2\lib\net45\Caliburn.Micro.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Caliburn.PresentationFramework">
-      <HintPath>..\..\packages\Caliburn.2.0\lib\net40\Caliburn.PresentationFramework.dll</HintPath>
+    <Reference Include="Caliburn.Micro.Logging">
+      <HintPath>..\..\packages\Caliburn.Micro.Logging.1.5.0.0\lib\net40\Caliburn.Micro.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -103,13 +94,15 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\..\packages\Caliburn.Micro.1.5.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\FattyRunner.Interfaces\FattyRunner.Interfaces.csproj">
       <Name>FattyRunner.Interfaces</Name>
       <Project>{481c3e67-3821-4e01-b3d8-851ea5c97953}</Project>
