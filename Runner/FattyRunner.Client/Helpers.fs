@@ -51,7 +51,7 @@ module ConfigurationHelpers =
             | [] -> cfg
         read' args defaultConfiguration
 
-module internal AssemblyHelpers =
+module AssemblyHelpers =
     let tryLoadAssembly (s:string) =
         try 
             let testAssembly = System.Reflection.AssemblyName.GetAssemblyName(s);

@@ -70,7 +70,7 @@
     <None Include="app.config" />
     <Compile Include="Helpers.fs" />
     <Compile Include="ConsoleRunnerTests.fs" />
-    <Compile Include="ObjectCrationTests.fs" />
+    <Compile Include="ObjectCreationTests.fs" />
     <Compile Include="CounterTests.fs" />
     <Compile Include="ConfigurationTests.fs" />
   </ItemGroup>

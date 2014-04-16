@@ -45,7 +45,7 @@ module TestRunnerEngine =
             let userData = if Option.isNone t.Configuration.Data then null
                            else Option.get t.Configuration.Data 
             let stepContext =
-                new ExternalContext(iters,t.Reference.Run.Name, cfg.Logger, userData)
+                new ExternalContext(iters,t.Configuration.WarmUp ,t.Reference.Run.Name, cfg.Logger, userData)
             ReflectionHelper.instantiate t.Reference.Type stepContext
 
         let decoratedExecute n = 
@@ -66,7 +66,7 @@ module TestRunnerEngine =
         let timings = 
             seq { step..step..count }
             |> Seq.map (fun x ->  x, decoratedExecute x)
-            |> Seq.map (fun (n,t) -> { IterationCount = uint32 n 
+            |> Seq.map (fun (n,t) -> { IterationCount = n 
                                        Time = uint64 t} : TimeMeasure)
             |> Seq.toList
         
