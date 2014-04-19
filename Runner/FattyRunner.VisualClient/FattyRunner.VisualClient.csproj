@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\packages\Autofac.3.3.1\lib\net40\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="Azon.Helpers">
       <HintPath>..\..\packages\Azon.Helpers.1.0.0.36\lib\NET40\Azon.Helpers.dll</HintPath>
     </Reference>
@@ -77,11 +80,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\Bootstrapper.cs" />
+    <Compile Include="Components\AutofacBootstrapper.cs" />
     <Compile Include="ViewModel\ShellViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\ListOfTestsViewModel.cs" />
-    <Compile Include="Views\ShellView.xaml.cs">
+    <Compile Include="ViewModel\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -118,9 +121,10 @@
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\ShellView.xaml">
+    <Page Include="ViewModel\ShellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>ShellViewModel.cs</DependentUpon>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
