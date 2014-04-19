@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Runner", "Runner", "{CDBB96F6-750E-4A39-A2FA-CDF0C59E1B7D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E9D56F1D-0F26-41AC-90A8-2BB8814C6D61}"
@@ -27,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".SolutionItems", ".Solution
 		FattyRunner.nuspec = FattyRunner.nuspec
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FattyRunner.ClientUi", "Runner\FattyRunner.ClientUi\FattyRunner.ClientUi.csproj", "{61491F33-99FD-48D0-B385-A6F286532335}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -98,6 +98,16 @@ Global
 		{30597BE9-08F8-4832-8AB7-009C00A6A2F2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{30597BE9-08F8-4832-8AB7-009C00A6A2F2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{30597BE9-08F8-4832-8AB7-009C00A6A2F2}.Release|x86.ActiveCfg = Release|Any CPU
+		{61491F33-99FD-48D0-B385-A6F286532335}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61491F33-99FD-48D0-B385-A6F286532335}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61491F33-99FD-48D0-B385-A6F286532335}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{61491F33-99FD-48D0-B385-A6F286532335}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{61491F33-99FD-48D0-B385-A6F286532335}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{61491F33-99FD-48D0-B385-A6F286532335}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61491F33-99FD-48D0-B385-A6F286532335}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61491F33-99FD-48D0-B385-A6F286532335}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{61491F33-99FD-48D0-B385-A6F286532335}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{61491F33-99FD-48D0-B385-A6F286532335}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,6 +115,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A08E2DFC-C34F-4353-AF50-25139A51551D} = {CDBB96F6-750E-4A39-A2FA-CDF0C59E1B7D}
 		{30597BE9-08F8-4832-8AB7-009C00A6A2F2} = {CDBB96F6-750E-4A39-A2FA-CDF0C59E1B7D}
+		{61491F33-99FD-48D0-B385-A6F286532335} = {CDBB96F6-750E-4A39-A2FA-CDF0C59E1B7D}
 		{82898601-EA61-47E8-8FE0-00A3E8239124} = {E9D56F1D-0F26-41AC-90A8-2BB8814C6D61}
 		{62605A81-9771-499A-8F5B-05A1C047AB2C} = {E9D56F1D-0F26-41AC-90A8-2BB8814C6D61}
 		{AC594D30-096D-49F5-99C6-17966349C663} = {62605A81-9771-499A-8F5B-05A1C047AB2C}
