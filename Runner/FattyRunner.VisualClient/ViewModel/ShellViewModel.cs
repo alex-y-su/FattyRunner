@@ -1,11 +1,9 @@
-﻿using System.ComponentModel;
-using System.Windows.Controls;
+﻿namespace FattyRunner.VisualClient.ViewModel {
+    using System.Windows.Controls;
 
-using Caliburn.Micro;
+    using Caliburn.Micro;
 
-namespace FattyRunner.VisualClient.ViewModel {
-    public class ShellViewModel : Screen {
-        public UserControl TestsList { get; set; }
-        public UserControl Details { get; set; }
+    public class ShellViewModel : Conductor<IScreen> {
+        public ContentControl TestsList { get; set; }
     }
 }

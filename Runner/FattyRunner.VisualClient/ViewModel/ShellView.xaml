@@ -4,12 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
+             MinHeight="400"
+             MinWidth="600"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*"  />
+            <ColumnDefinition Width="2*"  />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -23,7 +25,11 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch" 
             Margin="0"/>
-        <UserControl Grid.Row="0" Grid.Column="0" x:Name="TestsList"></UserControl>
-        <UserControl Grid.Row="0" Grid.Column="1" x:Name="TestsDetails"></UserControl>
+        <ContentControl VerticalContentAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch" 
+                        Grid.Row="0" Grid.Column="0" x:Name="TestsList"></ContentControl>
+        <ContentControl VerticalContentAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"
+                        Grid.Row="0" Grid.Column="1" x:Name="ActiveItem"></ContentControl>
     </Grid>
 </UserControl>
