@@ -16,6 +16,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        
         <GridSplitter 
             ResizeDirection="Columns" 
             Grid.Row="0"
@@ -25,11 +26,16 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch" 
             Margin="0"/>
-        <ContentControl VerticalContentAlignment="Stretch"
-                        HorizontalContentAlignment="Stretch" 
-                        Grid.Row="0" Grid.Column="0" x:Name="TestsList"></ContentControl>
+        
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Button x:Name="SelectAssemblyOrFolder">Open</Button>
+            <ListBox VerticalContentAlignment="Stretch"
+                     HorizontalContentAlignment="Stretch" 
+                     x:Name="Items" />
+        </StackPanel>
+        
         <ContentControl VerticalContentAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"
-                        Grid.Row="0" Grid.Column="1" x:Name="ActiveItem"></ContentControl>
+                        Grid.Row="0" Grid.Column="2" x:Name="ActiveItem" />
     </Grid>
 </UserControl>

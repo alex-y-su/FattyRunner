@@ -47,6 +47,10 @@
     <Reference Include="Caliburn.Micro.Logging">
       <HintPath>..\..\packages\Caliburn.Micro.Logging.1.5.0.0\lib\net40\Caliburn.Micro.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="FattyRunner.Engine">
+      <HintPath>..\FattyRunner.Client\bin\Debug\FattyRunner.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="FSharp.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -81,12 +85,19 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\AutofacBootstrapper.cs" />
+    <Compile Include="Components\FattyLoggerAdapter.cs" />
+    <Compile Include="ReflectionUtils.cs" />
+    <Compile Include="Controllers\ShellController.cs" />
+    <Compile Include="ViewModel\OneSelectedCollectionViewModel.cs" />
     <Compile Include="ViewModel\ShellViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="ViewModel\ListOfTestsViewModel.cs" />
     <Compile Include="ViewModel\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\TestItemView.xaml.cs">
+      <DependentUpon>TestItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\TestItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -116,7 +127,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\FattyRunner.Interfaces\FattyRunner.Interfaces.csproj">
+      <Project>{481c3e67-3821-4e01-b3d8-851ea5c97953}</Project>
+      <Name>FattyRunner.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
@@ -125,6 +141,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <DependentUpon>ShellViewModel.cs</DependentUpon>
+    </Page>
+    <Page Include="ViewModel\TestItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>TestItemViewModel.cs</DependentUpon>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

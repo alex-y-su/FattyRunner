@@ -10,7 +10,11 @@ using Autofac;
 
 using Caliburn.Micro.Logging;
 
+using FattyRunner.Engine;
+using FattyRunner.VisualClient.Controllers;
 using FattyRunner.VisualClient.ViewModel;
+
+using Microsoft.FSharp.Core;
 
 namespace FattyRunner.VisualClient.Components {
     public class AutofacBootstrapper : Bootstrapper<ShellViewModel> {
@@ -26,7 +30,13 @@ namespace FattyRunner.VisualClient.Components {
             var builder = new ContainerBuilder();
 
             this.ConfigureContainer(builder);
+            this.MakeRegistrations(builder);
             this.Container = builder.Build();
+        }
+
+        private void MakeRegistrations(ContainerBuilder builder) {
+            builder.RegisterType<ShellController>();
+            builder.RegisterInstance(new EnvironmentConfiguration(new FattyLoggerAdapter(), FSharpOption<uint>.None));
         }
 
         protected virtual void ConfigureContainer(ContainerBuilder builder) {
