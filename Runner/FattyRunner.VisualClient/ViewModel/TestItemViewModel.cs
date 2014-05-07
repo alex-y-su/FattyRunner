@@ -4,14 +4,21 @@ using FattyRunner.Engine;
 
 namespace FattyRunner.VisualClient.ViewModel {
     public class TestItemViewModel : INotifyPropertyChanged {
-        private readonly Test _test;
-
         public TestItemViewModel(Test test) {
-            this._test = test;
+            this.Test = test;
         }
 
-        public string ClassName { get { return this._test.Reference.Type.Name; } }
-        public string MethodName { get { return this._test.Reference.Run.Name; } }
+        public Test Test { get; private set; }
+        public string ClassName { get { return this.Test.Reference.Type.Name; } }
+        public string MethodName { get { return this.Test.Reference.Run.Name; } }
+
+        public void RunTest() {
+            //this._controller.RunTest(this.ActiveItem.Test, this.OnRunComplete);
+        }
+
+        public void OnRunComplete(TestResult data) {
+
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

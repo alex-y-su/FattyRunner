@@ -36,6 +36,9 @@ namespace FattyRunner.VisualClient.Components {
 
         private void MakeRegistrations(ContainerBuilder builder) {
             builder.RegisterType<ShellController>();
+
+            builder.RegisterType<TestItemViewModel>();
+            
             builder.RegisterInstance(new EnvironmentConfiguration(new FattyLoggerAdapter(), FSharpOption<uint>.None));
         }
 

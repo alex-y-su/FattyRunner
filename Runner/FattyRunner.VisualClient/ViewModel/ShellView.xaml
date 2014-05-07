@@ -7,6 +7,15 @@
              MinHeight="400"
              MinWidth="600"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate x:Key="ListBoxItemTemplate" >
+            <StackPanel>
+                <TextBlock FontSize="15" Text="{Binding Path=ClassName}"></TextBlock>
+                <TextBlock FontSize="10" Text="{Binding Path=MethodName}"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="*" />
@@ -16,7 +25,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <GridSplitter 
             ResizeDirection="Columns" 
             Grid.Row="0"
@@ -26,14 +35,14 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch" 
             Margin="0"/>
-        
+
         <StackPanel Grid.Row="0" Grid.Column="0">
-            <Button x:Name="SelectAssemblyOrFolder">Open</Button>
+            <Button x:Name="SelectAssemblyOrFolder">Open file</Button>
             <ListBox VerticalContentAlignment="Stretch"
                      HorizontalContentAlignment="Stretch" 
+                     ItemTemplate="{StaticResource ListBoxItemTemplate}"
                      x:Name="Items" />
         </StackPanel>
-        
         <ContentControl VerticalContentAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"
                         Grid.Row="0" Grid.Column="2" x:Name="ActiveItem" />
