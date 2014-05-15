@@ -18,12 +18,27 @@ namespace FattyRunner.VisualClient.ViewModel {
             this._itemsFactory = itemsFactory;
         }
 
-        public void SelectAssemblyOrFolder() {
+        public void AddTests() {
             var dlg = new OpenFileDialog();
             if (dlg.ShowDialog().GetValueOrDefault(false)) {
                 var tests = this._controller.LoadTests(dlg.FileName)
-                                            .Select(this._itemsFactory);
+                                            .Select(this._itemsFactory)
+                                            .ToArray();
+                
                 this.Items.AddRange(tests);
+
+                if (null == this.ActiveItem) this.ActiveItem = tests.First();
+            }
+        }
+
+        public void RunSelected() {
+            if(null == this.ActiveItem) return;
+            this.ActiveItem.RunTest();
+        }
+
+        public void RunAll() {
+            foreach (var x in this.Items) {
+                x.RunTest();
             }
         }
     }

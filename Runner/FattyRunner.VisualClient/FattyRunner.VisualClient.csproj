@@ -88,6 +88,9 @@
     <Compile Include="Components\FattyLoggerAdapter.cs" />
     <Compile Include="ReflectionUtils.cs" />
     <Compile Include="Controllers\ShellController.cs" />
+    <Compile Include="ViewModel\InProgressTestResultsView.xaml.cs">
+      <DependentUpon>InProgressTestResultsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\InProgressTestResultsViewModel.cs" />
     <Compile Include="ViewModel\ShellViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
@@ -99,6 +102,9 @@
       <DependentUpon>TestItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\TestItemViewModel.cs" />
+    <Compile Include="ViewModel\TestResultsView.xaml.cs">
+      <DependentUpon>TestResultsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\TestResultsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +131,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\fontawesome-webfont.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -139,6 +146,11 @@
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ViewModel\InProgressTestResultsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>InProgressTestResultsViewModel.cs</DependentUpon>
+    </Page>
     <Page Include="ViewModel\ShellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -148,6 +160,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <DependentUpon>TestItemViewModel.cs</DependentUpon>
+    </Page>
+    <Page Include="ViewModel\TestResultsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>TestResultsViewModel.cs</DependentUpon>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

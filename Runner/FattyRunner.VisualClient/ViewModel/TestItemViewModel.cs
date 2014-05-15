@@ -18,7 +18,7 @@ namespace FattyRunner.VisualClient.ViewModel {
             this._controller = controller;
             this._testResultVmFactory = testResultVmFactory;
             this.Test = test;
-            this.CanRunTest = true;
+            this.TestInProgress = false;
         }
 
         public Test Test { get; private set; }
@@ -33,17 +33,23 @@ namespace FattyRunner.VisualClient.ViewModel {
             get { return this.Test.Reference.Run.Name; }
         }
 
-        public bool CanRunTest { get; set; }
+        public bool TestInProgress { get; set; }
 
         public async void RunTest() {
-            this.CanRunTest = false;
-            this.TestResults = new InProgressTestResultsViewModel();
-            var res = await this._controller.RunTest(this.Test);
-            OnRunComplete(res);
+            if(this.TestInProgress) return;
+
+            this.TestInProgress = true;
+            try {
+                this.TestResults = new InProgressTestResultsViewModel();
+                var res = await this._controller.RunTest(this.Test);
+                OnRunComplete(res);
+            }
+            finally {
+                this.TestInProgress = false;
+            }
         }
 
         private void OnRunComplete(TestResult results) {
-            this.CanRunTest = true;
             this.TestResults = this._testResultVmFactory(results);
         }
     }

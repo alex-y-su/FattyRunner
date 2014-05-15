@@ -7,8 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="200">
     <StackPanel>
-        <Button x:Name="RunTest" Height="20" HorizontalContentAlignment="Center">Run</Button>
         <TextBlock FontSize="25" Text="{Binding Path=ClassName}"></TextBlock>
         <TextBlock FontSize="20" Text="{Binding Path=MethodName}"></TextBlock>
+        <ContentControl x:Name="TestResults" HorizontalAlignment="Stretch">
+        </ContentControl>
     </StackPanel>
 </UserControl>

@@ -2,25 +2,33 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              MinHeight="400"
              MinWidth="600"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <DataTemplate x:Key="ListBoxItemTemplate" >
+        <DataTemplate x:Key="ListBoxItemTemplate">
             <StackPanel>
-                <TextBlock FontSize="15" Text="{Binding Path=ClassName}"></TextBlock>
-                <TextBlock FontSize="10" Text="{Binding Path=MethodName}"></TextBlock>
+                <TextBlock FontSize="15" Text="{Binding Path=ClassName}" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <TextBlock FontSize="10" Text="{Binding Path=MethodName}" HorizontalAlignment="Left" />
+                    <TextBlock FontFamily="pack://application:,,,/Resources/#FontAwesome"
+                               FontSize="12"
+                               Margin="5 0 0 0"
+                               Text="&#xf017;" 
+                               Foreground="DarkGreen"
+                               Visibility="{Binding Path=TestInProgress, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </StackPanel>
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
-    
+
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="2*"  />
+            <ColumnDefinition Width="3*"  />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -37,11 +45,38 @@
             Margin="0"/>
 
         <StackPanel Grid.Row="0" Grid.Column="0">
-            <Button x:Name="SelectAssemblyOrFolder">Open file</Button>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <LinearGradientBrush x:Key="BlueBrush" StartPoint="1,0.2">
+                        <GradientStop Color="Green" Offset="0"></GradientStop>
+                        <GradientStop Color="DarkGreen" Offset=".4"></GradientStop>
+                        <GradientStop Color="Olive" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                    <Style TargetType="Button">
+                        <Setter Property="FontFamily" Value="pack://application:,,,/Resources/#FontAwesome"></Setter>
+                        <Setter Property="FontSize" Value="15"></Setter>
+                        <Setter Property="Background" Value="Transparent"></Setter>
+                        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                        <Setter Property="Foreground" Value="{StaticResource BlueBrush}"></Setter>
+                        <Setter Property="Margin" Value="3"></Setter>
+                        <Setter Property="Padding" Value="2"></Setter>
+                    </Style>
+                </StackPanel.Resources>
+                <Button Content="&#xf067;" 
+                        x:Name="AddTests" />
+                <Button 
+                        Content="&#xf04b;" 
+                        x:Name="RunSelected" />
+                <Button 
+                        Content="&#xf04e;" 
+                        x:Name="RunAll" />
+            </StackPanel>
             <ListBox VerticalContentAlignment="Stretch"
                      HorizontalContentAlignment="Stretch" 
+                     HorizontalAlignment="Stretch"
+                     VerticalAlignment="Stretch"
                      ItemTemplate="{StaticResource ListBoxItemTemplate}"
-                     x:Name="Items" />
+                     x:Name="Items" BorderBrush="{x:Null}" Background="{x:Null}" />
         </StackPanel>
         <ContentControl VerticalContentAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"

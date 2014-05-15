@@ -7,6 +7,7 @@ namespace FattyRunner.VisualClient.ViewModel {
     public partial class ShellView : UserControl {
         public ShellView() {
             this.InitializeComponent();
+            
         }
     }
 }
