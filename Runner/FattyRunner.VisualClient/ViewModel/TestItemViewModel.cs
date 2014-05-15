@@ -1,23 +1,24 @@
-﻿using System.ComponentModel;
+﻿using System;
 
 using Caliburn.Micro;
 
 using FattyRunner.Engine;
+using FattyRunner.VisualClient.Controllers;
 
 namespace FattyRunner.VisualClient.ViewModel {
-
-    public class InProgressTestResultsViewModel : TestResultsViewModel {
-        
-    }
-
-    public class TestResultsViewModel : INotifyPropertyChanged {
-        public event PropertyChangedEventHandler PropertyChanged;
-    }
-
     public class TestItemViewModel : Screen {
-        public TestItemViewModel(Test test) {
+        private readonly TestItemController _controller;
+        private readonly Func<TestResult, TestResultsViewModel> _testResultVmFactory;
+
+        public TestItemViewModel(
+            Test test, 
+            TestItemController controller, 
+            Func<TestResult,TestResultsViewModel> testResultVmFactory) {
+
+            this._controller = controller;
+            this._testResultVmFactory = testResultVmFactory;
             this.Test = test;
-            this.TestResults = 
+            this.CanRunTest = true;
         }
 
         public Test Test { get; private set; }
@@ -32,10 +33,18 @@ namespace FattyRunner.VisualClient.ViewModel {
             get { return this.Test.Reference.Run.Name; }
         }
 
-        public void RunTest() {
-            //this._controller.RunTest(this.ActiveItem.Test, this.OnRunComplete);
+        public bool CanRunTest { get; set; }
+
+        public async void RunTest() {
+            this.CanRunTest = false;
+            this.TestResults = new InProgressTestResultsViewModel();
+            var res = await this._controller.RunTest(this.Test);
+            OnRunComplete(res);
         }
 
-
+        private void OnRunComplete(TestResult results) {
+            this.CanRunTest = true;
+            this.TestResults = this._testResultVmFactory(results);
+        }
     }
 }

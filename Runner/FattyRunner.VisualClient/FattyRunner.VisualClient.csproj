@@ -88,16 +88,18 @@
     <Compile Include="Components\FattyLoggerAdapter.cs" />
     <Compile Include="ReflectionUtils.cs" />
     <Compile Include="Controllers\ShellController.cs" />
-    <Compile Include="ViewModel\OneSelectedCollectionViewModel.cs" />
+    <Compile Include="ViewModel\InProgressTestResultsViewModel.cs" />
     <Compile Include="ViewModel\ShellViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\TestItemController.cs" />
     <Compile Include="ViewModel\TestItemView.xaml.cs">
       <DependentUpon>TestItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\TestItemViewModel.cs" />
+    <Compile Include="ViewModel\TestResultsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

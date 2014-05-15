@@ -38,6 +38,8 @@ namespace FattyRunner.VisualClient.Components {
             builder.RegisterType<ShellController>();
 
             builder.RegisterType<TestItemViewModel>();
+            builder.RegisterType<TestResultsViewModel>();
+            builder.RegisterType<TestItemController>();
             
             builder.RegisterInstance(new EnvironmentConfiguration(new FattyLoggerAdapter(), FSharpOption<uint>.None));
         }
