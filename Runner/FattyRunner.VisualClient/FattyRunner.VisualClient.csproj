@@ -106,6 +106,10 @@
       <DependentUpon>TestResultsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\TestResultsViewModel.cs" />
+    <Compile Include="ViewModel\TimeMeasureView.xaml.cs">
+      <DependentUpon>TimeMeasureView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\TimeMeasureViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -165,6 +169,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <DependentUpon>TestResultsViewModel.cs</DependentUpon>
+    </Page>
+    <Page Include="ViewModel\TimeMeasureView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>TimeMeasureViewModel.cs</DependentUpon>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

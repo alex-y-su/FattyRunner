@@ -5,7 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBlock Text="Test completed"></TextBlock>
-    </Grid>
+    <StackPanel HorizontalAlignment="Stretch">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Ops (last):</TextBlock>
+            <TextBlock Name="OpsLast"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Ops (avg):</TextBlock>
+            <TextBlock Name="OpsAvg"></TextBlock>
+        </StackPanel>
+        <Canvas Height="20" Background="WhiteSmoke"></Canvas>
+        <ListBox x:Name="Timings" 
+                 HorizontalContentAlignment="Stretch"
+                 HorizontalAlignment="Stretch"
+                 BorderBrush="{x:Null}" 
+                 Background="{x:Null}"></ListBox>
+    </StackPanel>    
 </UserControl>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 
 using Azon.Helpers.Extensions;
 
@@ -40,6 +39,8 @@ namespace FattyRunner.VisualClient.Components {
             builder.RegisterType<TestItemViewModel>();
             builder.RegisterType<TestResultsViewModel>();
             builder.RegisterType<TestItemController>();
+            builder.RegisterType<TimeMeasureViewModel>();
+
             
             builder.RegisterInstance(new EnvironmentConfiguration(new FattyLoggerAdapter(), FSharpOption<uint>.None));
         }

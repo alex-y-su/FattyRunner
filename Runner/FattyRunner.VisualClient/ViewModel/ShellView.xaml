@@ -78,7 +78,8 @@
                      ItemTemplate="{StaticResource ListBoxItemTemplate}"
                      x:Name="Items" BorderBrush="{x:Null}" Background="{x:Null}" />
         </StackPanel>
-        <ContentControl VerticalContentAlignment="Stretch"
+        <ContentControl Margin="3"
+                        VerticalContentAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"
                         Grid.Row="0" Grid.Column="2" x:Name="ActiveItem" />
     </Grid>
