@@ -14,6 +14,8 @@ namespace FattyRunner.VisualClient.ViewModel {
         private readonly Func<Test, TestItemViewModel> _itemsFactory;
 
         public ShellViewModel(ShellController controller, Func<Test, TestItemViewModel> itemsFactory) {
+            this.DisplayName = "Fatty runner";
+
             this._controller = controller;
             this._itemsFactory = itemsFactory;
         }
