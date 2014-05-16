@@ -11,3 +11,5 @@ Runner/FattyRunner.Client/bin/
 Runner/FattyRunner.Client/obj/
 Runner/FattyRunner.VisualClient/bin/
 Runner/FattyRunner.VisualClient/obj/
+Runner/FattyRunner.VisualClient.Loader/bin/
+Runner/FattyRunner.VisualClient.Loader/obj/
