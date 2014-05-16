@@ -7,11 +7,11 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel HorizontalAlignment="Stretch">
         <StackPanel Orientation="Horizontal">
-            <TextBlock>Ops (last):</TextBlock>
+            <TextBlock FontWeight="Bold" Margin="0 0 2 0">Ops (last)</TextBlock>
             <TextBlock Name="OpsLast"></TextBlock>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock>Ops (avg):</TextBlock>
+            <TextBlock FontWeight="Bold" Margin="0 0 2 0">Ops (avg)</TextBlock>
             <TextBlock Name="OpsAvg"></TextBlock>
         </StackPanel>
         <Canvas Height="20" Background="WhiteSmoke"></Canvas>
