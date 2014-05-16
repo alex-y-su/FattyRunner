@@ -1,6 +1,8 @@
 FattyRunner
 ===========
 
+![FattyRunner](https://raw.githubusercontent.com/alexeysuvorov/FattyRunner/master/Wiki/Ui/Images/Screen1.png)
+
 Load test runner. Supposed to be used for fast and general check of algorithms and implementations. Can run a method multiple times every time increase count of execution by defied step until max iteration count will not be reached. Preserve timings for each iteration and generate JSON file with results.
 
 FatTest attribute source code with defaults:
