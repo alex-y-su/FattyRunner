@@ -120,6 +120,10 @@ Copyright 2014 Alexey Suvorov - Provided under the [MIT license](https://github.
 Release Notes
 =============
 
+0.0.3.0
+
+* Added visual client with basic UI.
+
 0.0.2.2
 
 * Data property added to ExternalContext, so user can pass some data throught attribute
