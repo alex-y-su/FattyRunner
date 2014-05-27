@@ -20,7 +20,8 @@ namespace FattyRunner.VisualClient.Loader {
                     ApplicationName = "FattyRunnerVisualClient",
                     ShadowCopyFiles = "true",
                     CachePath = cachePath,
-                    ConfigurationFile = configFile
+                    ConfigurationFile = configFile,
+                    
                 };
 
                 var domain = AppDomain.CreateDomain(

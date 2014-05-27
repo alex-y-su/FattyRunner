@@ -5,7 +5,7 @@ using FattyRunner.Interfaces;
 
 namespace AssemblyLoadTests {
     public class InitDisposeFatTestsContainer: IDisposable {
-        public InitDisposeFatTestsContainer(IFatLogger fatLogger) {
+        public InitDisposeFatTestsContainer(ExternalContext ctx) {
             
         }
 

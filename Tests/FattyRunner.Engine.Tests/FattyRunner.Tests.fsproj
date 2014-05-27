@@ -72,6 +72,7 @@
     <Compile Include="ConsoleRunnerTests.fs" />
     <Compile Include="ObjectCreationTests.fs" />
     <Compile Include="CounterTests.fs" />
+    <Compile Include="AppDomainWrapperTests.fs" />
     <Compile Include="ConfigurationTests.fs" />
   </ItemGroup>
   <ItemGroup>

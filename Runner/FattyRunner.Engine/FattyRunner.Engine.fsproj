@@ -52,6 +52,7 @@
       <DependentUpon>TestRunnerEngine.fs</DependentUpon>
     </Compile>
     <Compile Include="TestRunnerEngine.fs" />
+    <Compile Include="AppDomainWrapper.fs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FattyRunner.Interfaces\FattyRunner.Interfaces.csproj">
