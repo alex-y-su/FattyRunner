@@ -1,5 +1,26 @@
 ﻿namespace FattyRunner.Engine
 
+open System.IO 
+open System.Xml
+open System.Runtime.Serialization
+
+module internal SerializationHelper =
+    let Serialize(obj:obj) =
+        let xmlSerializer = new DataContractSerializer(obj.GetType());
+        let sb = new System.Text.StringBuilder()
+        use tw = new System.IO.StringWriter(sb)
+        use xw = new XmlTextWriter(tw)
+        xmlSerializer.WriteObject(xw, obj)
+        sb.ToString()
+
+    let Deserialize<'a>(content:string) =
+        let deserializer = new DataContractSerializer(typeof<'a>)
+        use sr = new StringReader(content)
+        use xr = new XmlTextReader(sr)
+        deserializer.ReadObject(xr) :?> 'a
+
+
+
 module internal ReflectionHelper = 
     open System
     open System.Reflection

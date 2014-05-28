@@ -1,24 +1,24 @@
 ﻿namespace FattyRunner.Engine
 
 open System
-open System.IO
 open System.Reflection
 
 module AppDomainWrapper =
     type ITestLoaderWrapper =
-        abstract member execute : EnvironmentConfiguration -> string -> TestResult list 
-
+        abstract member execute : string -> string -> TestResult list 
+    
     type TestLoaderWrapper() =
         inherit System.MarshalByRefObject()
         interface ITestLoaderWrapper with
-            member x.execute (cfg:EnvironmentConfiguration) (path: string) =
+            member x.execute (cfgConten: string) (path: string) =
                 let asm = Assembly.LoadFile(path)
+                let cfg = SerializationHelper.Deserialize<EnvironmentConfiguration>(cfgConten)
                 let tests = TestLoader.loadTests cfg asm |> Seq.toList
                 let x = AppDomain.CurrentDomain.FriendlyName
                 TestRunnerEngine.run tests cfg
 
-    let runForAssembly (cfg: EnvironmentConfiguration) (path: string) =
-        let basePath = Path.GetDirectoryName path
+    let runForAssembly (cfg: EnvironmentConfiguration) (assemblyPath: string) =
+        let basePath = System.IO.Path.GetDirectoryName assemblyPath
         let x = AppDomain.CurrentDomain.FriendlyName
 
         let runnerAsm = Assembly.GetExecutingAssembly().Location
@@ -29,7 +29,7 @@ module AppDomainWrapper =
                                        PrivateBinPath = runnerDir,
                                        ApplicationBase = runnerDir)
 
-        let domain = AppDomain.CreateDomain(path, AppDomain.CurrentDomain.Evidence, setup)
+        let domain = AppDomain.CreateDomain(assemblyPath, AppDomain.CurrentDomain.Evidence, setup)
   
         let executor = domain.CreateInstanceFromAndUnwrap(runnerAsm, typeof<TestLoaderWrapper>.FullName) :?> ITestLoaderWrapper
-        executor.execute cfg path
+        executor.execute (SerializationHelper.Serialize(cfg)) assemblyPath

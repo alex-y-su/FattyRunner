@@ -1,4 +1,5 @@
 ﻿namespace FattyRunner.Engine
+open System.Runtime.Serialization
 
 type TestReference = 
     { Type : System.Type
@@ -18,6 +19,7 @@ type Test =
 type Configuration = 
     { TestsToRun : Test list }
 
+[<DataContract>]
 type EnvironmentConfiguration = 
     { Logger : FattyRunner.Interfaces.IFatLogger
       Count  : uint32 option }
@@ -26,6 +28,7 @@ type TimeMeasure =
     { IterationCount: uint32
       Time: uint64 }
 
+[<DataContract>]
 type TestResult = 
     { TestName : string
       Timings  : TimeMeasure list }
