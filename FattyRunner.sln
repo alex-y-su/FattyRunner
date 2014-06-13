@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FattyRunner.VisualClient", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FattyRunner.VisualClient.Loader", "Runner\FattyRunner.VisualClient.Loader\FattyRunner.VisualClient.Loader.csproj", "{19752CDF-027D-4A2F-909E-9BB8B8FF4070}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLoaderTestAssembly", "Tests\Resources\TestLoaderTestAssembly\TestLoaderTestAssembly.csproj", "{52522A56-43B6-4167-A19A-DCDFF02DC908}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -122,6 +124,16 @@ Global
 		{19752CDF-027D-4A2F-909E-9BB8B8FF4070}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{19752CDF-027D-4A2F-909E-9BB8B8FF4070}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{19752CDF-027D-4A2F-909E-9BB8B8FF4070}.Release|x86.ActiveCfg = Release|Any CPU
+		{52522A56-43B6-4167-A19A-DCDFF02DC908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52522A56-43B6-4167-A19A-DCDFF02DC908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52522A56-43B6-4167-A19A-DCDFF02DC908}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{52522A56-43B6-4167-A19A-DCDFF02DC908}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{52522A56-43B6-4167-A19A-DCDFF02DC908}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{52522A56-43B6-4167-A19A-DCDFF02DC908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52522A56-43B6-4167-A19A-DCDFF02DC908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52522A56-43B6-4167-A19A-DCDFF02DC908}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{52522A56-43B6-4167-A19A-DCDFF02DC908}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{52522A56-43B6-4167-A19A-DCDFF02DC908}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -135,5 +147,6 @@ Global
 		{62605A81-9771-499A-8F5B-05A1C047AB2C} = {E9D56F1D-0F26-41AC-90A8-2BB8814C6D61}
 		{AC594D30-096D-49F5-99C6-17966349C663} = {62605A81-9771-499A-8F5B-05A1C047AB2C}
 		{8F817CFF-D513-44FB-8051-8B5E31A69E0C} = {62605A81-9771-499A-8F5B-05A1C047AB2C}
+		{52522A56-43B6-4167-A19A-DCDFF02DC908} = {62605A81-9771-499A-8F5B-05A1C047AB2C}
 	EndGlobalSection
 EndGlobal

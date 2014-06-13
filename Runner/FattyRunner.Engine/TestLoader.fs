@@ -32,11 +32,27 @@ module TestLoader =
         | Some(n) -> { c with Count = n }
         | _ -> c
 
-    let loadTests (cfg:EnvironmentConfiguration) (asm: Assembly) = 
-        let types = query { for x in asm.DefinedTypes do
-                            where (x.DeclaredMethods |> Seq.exists isFattyMethod)
-                            select x }
+    let getTypes (asm: Assembly) (typesToRun: string list) =
+        let filter (t: System.Type) =
+            typesToRun |> List.exists (fun x -> x = t.FullName)
+        asm.DefinedTypes |> Seq.filter filter
+
+    let loadAllAsmTests (asm: Assembly) =
+        query { for x in asm.DefinedTypes do
+                where (x.DeclaredMethods |> Seq.exists isFattyMethod)
+                select x }
+
+
+    let loadTests (cfg:EnvironmentConfiguration) (asm: Assembly) (testsToRun: string list) = 
+//        let types =
+//            match testsToRun with
+//            | [] -> loadAllAsmTests asm
+//            | x -> 
         
+        seq { yield {} }
+        //| lst -> lst |> List.exists (fun x -> x = sprintf "%s.%s" s.DeclaringType.Name s.Name)
+
+        (*
         let createTest (t: TypeInfo) =
             let methods = t.DeclaredMethods |> Seq.filter isFattyMethod
             let afterWarm = t.DeclaredMethods |> Seq.tryFind isAfterWarmMethod
@@ -44,6 +60,6 @@ module TestLoader =
                 let c = getTestConfiguration t m
                 { Reference = createTestRference t m afterWarm
                   Configuration = mergeConfigs c cfg }:Test                
-            methods |> Seq.map createTest'
+            methods |> Seq.filter toBeRun |> Seq.map createTest'
         
-        types |> Seq.map createTest |> Seq.concat
+        types |> Seq.map createTest |> Seq.concat*)

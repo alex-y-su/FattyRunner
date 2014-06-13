@@ -70,6 +70,7 @@
     <None Include="app.config" />
     <Compile Include="Helpers.fs" />
     <Compile Include="ConsoleRunnerTests.fs" />
+    <Compile Include="TestLoaderTest.fs" />
     <Compile Include="ObjectCreationTests.fs" />
     <Compile Include="CounterTests.fs" />
     <Compile Include="AppDomainWrapperTests.fs" />
@@ -99,6 +100,11 @@
     <ProjectReference Include="..\Resources\PerfTestsContainer\PerfTestsContainer.csproj">
       <Name>PerfTestsContainer</Name>
       <Project>{8f817cff-d513-44fb-8051-8b5e31a69e0c}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Resources\TestLoaderTestAssembly\TestLoaderTestAssembly.csproj">
+      <Name>TestLoaderTestAssembly</Name>
+      <Project>{52522a56-43b6-4167-a19a-dcdff02dc908}</Project>
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>

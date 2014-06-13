@@ -17,6 +17,8 @@ module TestHelpers =
     open FattyRunner.Engine
     open ReflectiponHelpers
 
+    let emptyConfig = { Logger = EmptyLogger.Instance; Count = None }
+
     let createTestRef (t : System.Type) mName = 
         let m = getMethodReference t mName
         { Type = t

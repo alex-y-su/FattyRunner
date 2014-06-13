@@ -13,7 +13,7 @@ module AppDomainWrapper =
             member x.execute (cfgConten: string) (path: string) =
                 let asm = Assembly.LoadFile(path)
                 let cfg = SerializationHelper.Deserialize<EnvironmentConfiguration>(cfgConten)
-                let tests = TestLoader.loadTests cfg asm |> Seq.toList
+                let tests = TestLoader.loadTests cfg asm [] |> Seq.toList
                 let x = AppDomain.CurrentDomain.FriendlyName
                 TestRunnerEngine.run tests cfg
 

@@ -1,0 +1,7 @@
+C:\Projects\FattyRunner\Tests\Resources\TestLoaderTestAssembly\bin\Debug\TestLoaderTestAssembly.dll
+C:\Projects\FattyRunner\Tests\Resources\TestLoaderTestAssembly\bin\Debug\TestLoaderTestAssembly.pdb
+C:\Projects\FattyRunner\Tests\Resources\TestLoaderTestAssembly\bin\Debug\FattyRunner.Interfaces.dll
+C:\Projects\FattyRunner\Tests\Resources\TestLoaderTestAssembly\bin\Debug\FattyRunner.Interfaces.pdb
+C:\Projects\FattyRunner\Tests\Resources\TestLoaderTestAssembly\obj\Debug\TestLoaderTestAssembly.csprojResolveAssemblyReference.cache
+C:\Projects\FattyRunner\Tests\Resources\TestLoaderTestAssembly\obj\Debug\TestLoaderTestAssembly.dll
+C:\Projects\FattyRunner\Tests\Resources\TestLoaderTestAssembly\obj\Debug\TestLoaderTestAssembly.pdb
