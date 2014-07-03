@@ -46,15 +46,15 @@
   <ItemGroup>
     <Compile Include="Helpers.fs" />
     <Compile Include="DomainObjects.fs" />
-    <Compile Include="TestLoader.fsi">
+    <None Include="TestLoader.fsi.x">
       <DependentUpon>TestLoader.fs</DependentUpon>
-    </Compile>
-    <Compile Include="TestLoader.fs" />
+    </None>
+    <None Include="TestLoader.fs.x" />
     <Compile Include="TestRunnerEngine.fsi">
       <DependentUpon>TestRunnerEngine.fs</DependentUpon>
     </Compile>
     <Compile Include="TestRunnerEngine.fs" />
-    <Compile Include="AppDomainWrapper.fs" />
+    <None Include="AppDomainWrapper.fs.x" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FattyRunner.Interfaces\FattyRunner.Interfaces.csproj">

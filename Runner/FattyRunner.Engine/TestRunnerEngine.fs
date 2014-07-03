@@ -5,7 +5,6 @@ module TestRunnerEngine =
     open System.Diagnostics
     open FattyRunner.Interfaces
 
-    
     let prepareEnvironment cfg = ()
     let shutdownEnvironment cfg = ()
     let beforeStart config = ()
@@ -38,30 +37,30 @@ module TestRunnerEngine =
         
         sw.ElapsedMilliseconds
     
-    let runTest (cfg:EnvironmentConfiguration) (t : Test) = 
+    let runTest (cfg:EnvironmentConfiguration) (testRec : Test) = 
         do prepareEnvironment cfg
 
         let ctor iters =
-            let userData = if Option.isNone t.Configuration.Data then null
-                           else Option.get t.Configuration.Data 
+            let userData = if Option.isNone testRec.Configuration.Data then null
+                           else Option.get testRec.Configuration.Data 
             let stepContext =
-                new ExternalContext(iters,t.Configuration.WarmUp ,t.Reference.Run.Name, cfg.Logger, userData)
-            ReflectionHelper.instantiate t.Reference.Type stepContext
+                new ExternalContext(iters,testRec.Configuration.WarmUp ,testRec.Reference.Run.Name, cfg.Logger, userData)
+            ReflectionHelper.instantiate testRec.Reference.Type stepContext
 
         let decoratedExecute n = 
             do beforeStart cfg
-            let res = executeStep ctor t n
+            let res = executeStep ctor testRec n
             do afterEnd cfg
             res
         
         let step = 
-            match t.Configuration.ProgressiveStep with
+            match testRec.Configuration.ProgressiveStep with
             | 0u -> 1u 
-            | x when x > t.Configuration.Count -> 
-                t.Configuration.Count
+            | x when x > testRec.Configuration.Count -> 
+                testRec.Configuration.Count
             | x -> x
 
-        let count = t.Configuration.Count
+        let count = testRec.Configuration.Count
         
         let timings = 
             seq { step..step..count }
@@ -71,8 +70,8 @@ module TestRunnerEngine =
             |> Seq.toList
         
         do shutdownEnvironment cfg
-        let testName = sprintf "%s.%s" t.Reference.Type.FullName t.Reference.Run.Name
+        let testName = sprintf "%s.%s" testRec.Reference.Type.FullName testRec.Reference.Run.Name
         { TestName = testName; Timings = timings} : TestResult
     
     let run (tests : Test list) (cfg: EnvironmentConfiguration) : TestResult list = 
-        tests |> List.map (runTest cfg)
+         List.map (runTest cfg) tests

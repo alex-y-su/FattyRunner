@@ -8,5 +8,4 @@ module TestLoaderTest =
         let cfg = TestHelpers.emptyConfig
         let asm = typeof<LoadTestsByList>.Assembly
         let res = TestLoader.loadTests cfg asm ["TestLoaderTestAssembly.LoadTestsByList.ShouldBeLoaded"] |> Seq.toList
-        res.
         ()

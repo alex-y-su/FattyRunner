@@ -49,7 +49,6 @@ module TestLoader =
 //            | [] -> loadAllAsmTests asm
 //            | x -> 
         
-        seq { yield {} }
         //| lst -> lst |> List.exists (fun x -> x = sprintf "%s.%s" s.DeclaringType.Name s.Name)
 
         (*
