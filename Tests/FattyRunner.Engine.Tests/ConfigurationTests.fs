@@ -12,32 +12,42 @@ module ``Assembly reading test`` =
     open NHamcrest.Core
 
     let emptyGConf = { Count = None; Logger = null }
-
+    
     [<Fact>]
     let ``Global config count should override attribute iterations count``()=
         let gcfg = { Count = Some(999u); Logger = null }
         let t = typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>
-        let test = TestLoader.loadTests gcfg t.Assembly
-                   |> Seq.find (fun x -> x.Reference.Type = t)
+        let test = TestLoader.findMultistepTests t.Assembly
+                   |> Seq.map (TestLoader.loadMultistepTestRef t.Assembly)
+                   |> Seq.find (fun x -> x.Type = t)
+                   |> TestLoader.loadMultistepTest gcfg
+
         let actual = test.Configuration
         actual.Equals({ Count = 999u; WarmUp = 150u; ProgressiveStep = 300u; Data = Some("UserData" :> obj) })
         |> should be True
+    
 
+    
     [<Fact>]
     let ``Should read configuration from attribute``() =
         let t = typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>
-        let test = TestLoader.loadTests emptyGConf t.Assembly
-                   |> Seq.find (fun x -> x.Reference.Type = t)
+        let test = TestLoader.findMultistepTests t.Assembly
+                   |> Seq.map (TestLoader.loadMultistepTestRef t.Assembly)
+                   |> Seq.find (fun x -> x.Type = t)
+                   |> TestLoader.loadMultistepTest emptyGConf
         
         let actual = test.Configuration
         actual.Equals({ Count = 3000u; WarmUp = 150u; ProgressiveStep = 300u; Data = Some("UserData" :> obj) })
         |> should be True
+    
 
     [<Fact>]
     let ``Should find proper assemblies in directory``() =
         let dir = System.AppDomain.CurrentDomain.BaseDirectory
+        
         let foundAssemblies = 
             AssemblyHelpers.loadAllAssembliesFromDirectory dir |> Seq.toList
+
         let expectedName = 
             typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>.Assembly.FullName
         
@@ -50,7 +60,6 @@ module ``Assembly reading test`` =
     [<Fact>]
     let ``Assembly loader should find all types with fatty methods``() =
         let asm = typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>.Assembly
-        let tests = TestLoader.loadTests emptyGConf asm |> Seq.toList
-
-        tests.IsEmpty |> should be False
+        let tests = TestLoader.findMultistepTests asm
         tests.Length |> should equal 2
+        

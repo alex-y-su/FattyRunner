@@ -1,34 +1,40 @@
 ﻿namespace FattyRunner.Engine
+
 open System.Runtime.Serialization
 
 type TestReference = 
     { Type : System.Type
       Run : System.Reflection.MethodInfo
-      AfterWarmUp: System.Reflection.MethodInfo option }
+      AfterWarmUp : System.Reflection.MethodInfo option }
 
-type TestConfiguration = 
+type MultistepTestConfiguration = 
     { Count : uint32
       WarmUp : uint32
-      ProgressiveStep: uint32
-      Data: obj option }
+      ProgressiveStep : uint32
+      Data : obj option }
 
-type Test = 
+type MultistepTest = 
     { Reference : TestReference
-      Configuration : TestConfiguration }
+      Configuration : MultistepTestConfiguration }
 
-type Configuration = 
-    { TestsToRun : Test list }
+type MultisterpTestsConfiguration = 
+    { TestsToRun : MultistepTest list }
+
+type TestDefenition = 
+    { TestName : string
+      TypeName : string
+      AssemblyName : string }
 
 [<DataContract>]
 type EnvironmentConfiguration = 
     { Logger : FattyRunner.Interfaces.IFatLogger
-      Count  : uint32 option }
+      Count : uint32 option }
 
 type TimeMeasure = 
-    { IterationCount: uint32
-      Time: uint64 }
+    { IterationCount : uint32
+      Time : uint64 }
 
 [<DataContract>]
 type TestResult = 
     { TestName : string
-      Timings  : TimeMeasure list }
+      Timings : TimeMeasure list }

@@ -41,7 +41,7 @@ module ``Engine counter tests`` =
               WarmUp = 0u
               Data = None }
        
-        let test : Test = 
+        let test : MultistepTest = 
             { Reference = createTestRef typeof<TestType> "Run"
               Configuration = config }
         let envConfig = { Logger = counter; Count = None }
@@ -63,7 +63,7 @@ module ``Engine counter tests`` =
               Run = getMethodReference typeof<TestType> "Run"
               AfterWarmUp = Some(getMethodReference typeof<TestType> "AfterWarm")}
 
-        let test : Test = 
+        let test : MultistepTest = 
             { Reference = testRef
               Configuration = config }
 
@@ -82,7 +82,7 @@ module ``Engine counter tests`` =
               WarmUp = 0u
               Data = None }
         
-        let test : Test = 
+        let test : MultistepTest = 
             { Reference = createTestRef typeof<TestType> "Run"
               Configuration = config }
 
@@ -105,7 +105,7 @@ module ``Engine counter tests`` =
               WarmUp = 0u
               Data = None }
         
-        let test : Test = 
+        let test : MultistepTest = 
             { Reference = createTestRef typeof<TestType> "Run"
               Configuration = config }
         let envConfig = { Logger = counter; Count = None }
@@ -122,7 +122,7 @@ module ``Engine counter tests`` =
               WarmUp = 0u
               Data = None }
         
-        let test : Test = 
+        let test : MultistepTest = 
             { Reference = createTestRef typeof<TestType> "Run"
               Configuration = config }
         let envConfig = { Logger = counter; Count = None }
@@ -139,7 +139,7 @@ module ``Engine counter tests`` =
               WarmUp = 10u
               Data = None }
         
-        let test : Test = 
+        let test : MultistepTest = 
             { Reference = createTestRef typeof<TestType> "Run"
               Configuration = config }
         

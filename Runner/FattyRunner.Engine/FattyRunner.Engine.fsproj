@@ -46,10 +46,10 @@
   <ItemGroup>
     <Compile Include="Helpers.fs" />
     <Compile Include="DomainObjects.fs" />
-    <None Include="TestLoader.fsi.x">
+    <Compile Include="TestLoader.fsi">
       <DependentUpon>TestLoader.fs</DependentUpon>
-    </None>
-    <None Include="TestLoader.fs.x" />
+    </Compile>
+    <Compile Include="TestLoader.fs" />
     <Compile Include="TestRunnerEngine.fsi">
       <DependentUpon>TestRunnerEngine.fs</DependentUpon>
     </Compile>
