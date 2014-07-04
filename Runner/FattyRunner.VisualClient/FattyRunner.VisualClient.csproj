@@ -50,9 +50,6 @@
     <Reference Include="Caliburn.Micro.Logging">
       <HintPath>..\..\packages\Caliburn.Micro.Logging.1.5.0.0\lib\net40\Caliburn.Micro.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="FattyRunner.Engine">
-      <HintPath>..\FattyRunner.Client\bin\Debug\FattyRunner.Engine.dll</HintPath>
-    </Reference>
     <Reference Include="FSharp.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -152,6 +149,10 @@
     <ProjectReference Include="..\..\FattyRunner.Interfaces\FattyRunner.Interfaces.csproj">
       <Project>{481c3e67-3821-4e01-b3d8-851ea5c97953}</Project>
       <Name>FattyRunner.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FattyRunner.Engine\FattyRunner.Engine.fsproj">
+      <Project>{a08e2dfc-c34f-4353-af50-25139a51551d}</Project>
+      <Name>FattyRunner.Engine</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

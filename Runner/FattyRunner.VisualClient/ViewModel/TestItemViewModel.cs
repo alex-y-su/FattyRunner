@@ -7,11 +7,13 @@ using FattyRunner.VisualClient.Controllers;
 
 namespace FattyRunner.VisualClient.ViewModel {
     public class TestItemViewModel : Screen {
+        private readonly System.Reflection.Assembly _asm;
         private readonly TestItemController _controller;
         private readonly Func<TestResult, TestResultsViewModel> _testResultVmFactory;
 
         public TestItemViewModel(
-            Test test,
+            System.Reflection.Assembly asm,
+            TestDefenition test,
             TestItemController controller,
             Func<TestResult, TestResultsViewModel> testResultVmFactory) {
 
@@ -19,29 +21,30 @@ namespace FattyRunner.VisualClient.ViewModel {
             this._testResultVmFactory = testResultVmFactory;
             this.Test = test;
             this.TestInProgress = false;
+            this._asm = asm;
         }
 
-        public Test Test { get; private set; }
+        public TestDefenition Test { get; private set; }
 
         public Screen TestResults { get; private set; }
 
         public string ClassName {
-            get { return this.Test.Reference.Type.Name; }
+            get { return this.Test.TypeName; }
         }
 
         public string MethodName {
-            get { return this.Test.Reference.Run.Name; }
+            get { return this.Test.TestName; }
         }
 
         public bool TestInProgress { get; set; }
 
         public async void RunTest() {
             if (this.TestInProgress) return;
-
+            
             this.TestInProgress = true;
             try {
                 this.TestResults = new InProgressTestResultsViewModel();
-                var res = await this._controller.RunTest(this.Test);
+                var res = await this._controller.RunTest(this.Test, this._asm);
                 this.TestResults = this._testResultVmFactory(res);
             }
             finally {
