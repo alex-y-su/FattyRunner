@@ -15,7 +15,7 @@ module TestRunnerEngine =
             else do f() |> ignore  
                  exec' f (n-1u)
 
-    let executeStep ctor (t:MultistepTest) (n:uint32)  =
+    let executeStep ctor (t:Test) (n:uint32)  =
         let instance = ctor n
 
         let fu() = 
@@ -37,7 +37,7 @@ module TestRunnerEngine =
         
         sw.ElapsedMilliseconds
     
-    let runTest (cfg:EnvironmentConfiguration) (testRec : MultistepTest) = 
+    let runTest (cfg:EnvironmentConfiguration) (testRec : Test) = 
         do prepareEnvironment cfg
 
         let ctor iters =
@@ -73,5 +73,5 @@ module TestRunnerEngine =
         let testName = sprintf "%s.%s" testRec.Reference.Type.FullName testRec.Reference.Run.Name
         { TestName = testName; Timings = timings} : TestResult
     
-    let runMultistepTests (tests : MultistepTest list) (cfg: EnvironmentConfiguration) : TestResult list = 
+    let runTests (cfg: EnvironmentConfiguration) (tests : Test list) : TestResult list = 
          List.map (runTest cfg) tests

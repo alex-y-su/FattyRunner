@@ -34,7 +34,7 @@ module ``Engine objects tests`` =
               WarmUp = 0u
               Data = None }
         
-        let test : MultistepTest = 
+        let test : Test = 
             { Reference = createTestRef typeof<TestTypeWithoutCtor> "Run"
               Configuration = config }
         
@@ -50,7 +50,7 @@ module ``Engine objects tests`` =
               WarmUp = 0u
               Data = Some(box 42) }
         
-        let test : MultistepTest = 
+        let test : Test = 
             { Reference = createTestRef typeof<TestTypeWithCtor> "Run"
               Configuration = config }
         
@@ -67,7 +67,7 @@ module ``Engine objects tests`` =
               WarmUp = 5u
               Data = None }
         
-        let test : MultistepTest = 
+        let test : Test = 
             { Reference = createTestRef typeof<TestTypeWithCtor> "Run"
               Configuration = config }
         

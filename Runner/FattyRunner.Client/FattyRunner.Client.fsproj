@@ -56,7 +56,6 @@
   <ItemGroup>
     <Compile Include="TestResultePersister.fs" />
     <Compile Include="Helpers.fs" />
-    <Compile Include="ConsoleRunner.fsi" />
     <Compile Include="ConsoleRunner.fs" />
     <Compile Include="App.fs" />
     <None Include="App.config">

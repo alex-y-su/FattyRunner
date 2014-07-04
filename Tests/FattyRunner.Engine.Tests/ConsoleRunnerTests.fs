@@ -46,8 +46,10 @@ module ``Console runner tests`` =
         let args = ["test:PerfTestsContainer.FilterByNameRabbit.Some"
                     sprintf "path:%s" file
                     "n:1"]
+
         let cfg = ConfigurationHelpers.readConfigFromArgs args
-        let result = ConsoleRunner.runForConfig cfg
+        let result = ConsoleRunner.getResults cfg
+
         result.Length |> should equal 1
         result.Head.TestName |> should equal "PerfTestsContainer.FilterByNameRabbit.Some"
     

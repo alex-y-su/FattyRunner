@@ -30,9 +30,9 @@ module TestLoader =
         { Count = attr.MaxIterations
           WarmUp = attr.WarmUpIterations
           ProgressiveStep = attr.Step 
-          Data = if null=attr.Data then None else Some(attr.Data) }: MultistepTestConfiguration
+          Data = if null=attr.Data then None else Some(attr.Data) }: TestConfiguration
 
-    let mergeConfigs (c: MultistepTestConfiguration) (g:EnvironmentConfiguration) =
+    let mergeConfigs (c: TestConfiguration) (g:EnvironmentConfiguration) =
         match g.Count with
         | Some(n) -> { c with Count = n }
         | _ -> c
@@ -40,7 +40,7 @@ module TestLoader =
     let loadMultistepTest (globCfg: EnvironmentConfiguration) (testRef: TestReference) =
         let localCfg = getTestConfiguration testRef
         let cfg = mergeConfigs localCfg globCfg
-        { Reference = testRef; Configuration = cfg } : MultistepTest
+        { Reference = testRef; Configuration = cfg } : Test
 
     let loadMultistepTestRef (asm: System.Reflection.Assembly) (testDef: TestDefenition) =
         let t = asm.DefinedTypes |> Seq.find (fun x -> x.FullName = testDef.TypeName)
@@ -48,7 +48,7 @@ module TestLoader =
         let afterWarm = t.DeclaredMethods |> Seq.tryFind isAfterWarmMethod
         { Type = t; Run = m; AfterWarmUp = afterWarm } : TestReference
 
-    let findMultistepTests (asm: System.Reflection.Assembly) : TestDefenition list =
+    let findTestDefenitions (asm: System.Reflection.Assembly) : TestDefenition list =
         let flattedMethods = seq { for t in asm.DefinedTypes do
                                        for m in t.DeclaredMethods do
                                            yield m }

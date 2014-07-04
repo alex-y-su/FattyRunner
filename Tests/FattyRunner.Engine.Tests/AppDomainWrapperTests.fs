@@ -8,12 +8,12 @@ module ``App domain wrapper tests`` =
 
     open System
     open System.Reflection
-
-    (*
+    
     [<Fact>]
     let ``Should load runner assembly correct even if base path broken``() =
         let tasm = typeof<AssemblyLoadTests.PrimitiveFatTestsContainer>.Assembly.Location
         let cfg = { Logger = EmptyLogger.Instance; Count = None }
-        let results = AppDomainWrapper.runForAssembly cfg tasm
-        results |> List.length |> should equal 2
-    *)
+        failwith "not implemented"
+        //let results = AppDomainWrapper.runForAssembly cfg tasm
+        //results |> List.length |> should equal 2
+    

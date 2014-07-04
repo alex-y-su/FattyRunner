@@ -7,18 +7,15 @@ type TestReference =
       Run : System.Reflection.MethodInfo
       AfterWarmUp : System.Reflection.MethodInfo option }
 
-type MultistepTestConfiguration = 
+type TestConfiguration = 
     { Count : uint32
       WarmUp : uint32
       ProgressiveStep : uint32
       Data : obj option }
 
-type MultistepTest = 
+type Test = 
     { Reference : TestReference
-      Configuration : MultistepTestConfiguration }
-
-type MultisterpTestsConfiguration = 
-    { TestsToRun : MultistepTest list }
+      Configuration : TestConfiguration }
 
 type TestDefenition = 
     { TestName : string

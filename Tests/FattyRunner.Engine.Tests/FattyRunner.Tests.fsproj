@@ -70,7 +70,6 @@
     <None Include="app.config" />
     <Compile Include="Helpers.fs" />
     <Compile Include="ConsoleRunnerTests.fs" />
-    <Compile Include="TestLoaderTest.fs" />
     <Compile Include="ObjectCreationTests.fs" />
     <Compile Include="CounterTests.fs" />
     <Compile Include="AppDomainWrapperTests.fs" />

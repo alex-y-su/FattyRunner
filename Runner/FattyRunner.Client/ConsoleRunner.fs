@@ -12,6 +12,11 @@ module ConsoleRunner =
     open ConfigurationHelpers
     open FattyRunner.Engine
 
+    type AssemblyTestDef = {
+        Test : TestDefenition list
+        Asmbl : System.Reflection.Assembly
+    }
+
     [<Literal>]
     let private helpMessage = @"Usage: 
                         n:[number]  - Count of iterations
@@ -24,50 +29,55 @@ module ConsoleRunner =
 
     let private writeConfigurationIncorrect() =
         printfn "%s" helpMessage
-        List<Test>.Empty
 
-    let testsFromFile (s:string) (envConf) = 
-        let asm = AssemblyHelpers.loadAssemblyFromFile s
-        match asm with 
-        | Some(asm) -> TestLoader.loadTests envConf asm |> Seq.toList
-        | _ -> List<Test>.Empty
+    let getDefenitionFromAsm asm (selectedTests : string list) =
+        let tests = TestLoader.findTestDefenitions asm
+        
+        let testsToRun =  
+            match selectedTests with
+            | [] -> tests
+            | x ->
+                let testNames = x |> Set.ofList
+                let filter (t:TestDefenition) =
+                    let name = sprintf "%s.%s" t.TypeName t.TestName
+                    testNames.Contains name
+                List.filter filter tests
+        
+        List.map (TestLoader.loadMultistepTestRef asm) testsToRun
+    
+    let runForConfig (conf: EnvironmentConfiguration) (tests: TestReference list) =
+        let instances = List.map (TestLoader.loadMultistepTest conf) tests
+        TestRunnerEngine.runTests conf instances
 
-    let testsFromDir (s:string) envConf = 
-        let assemblies =  AssemblyHelpers.loadAllAssembliesFromDirectory s
+    let getResults globalCfg =
+        let testsToRun = 
+            match globalCfg.AssemblyLocation with
+            | f when System.IO.File.Exists f -> 
+                let asm = AssemblyHelpers.loadAssemblyFromFile f
+                getDefenitionFromAsm asm.Value globalCfg.TestList
+            | dir when System.IO.Directory.Exists dir -> 
+                let assemblies = AssemblyHelpers.loadAllAssembliesFromDirectory dir
+                seq { 
+                    for asm in assemblies do
+                        for x in getDefenitionFromAsm asm globalCfg.TestList do
+                            yield x
+                } |> Seq.toList
+            | _ -> 
+                do writeConfigurationIncorrect()
+                List<TestReference>.Empty
 
-        assemblies |> Seq.map (TestLoader.loadTests envConf)
-                   |> Seq.concat
-                   |> Seq.toList
-
-    let runForConfig (cfg: RunConfiguration) =
         let envConf : EnvironmentConfiguration =
-            { Count = cfg.IterationsCount; Logger = new ConsoleLogger() }
+            { Count = globalCfg.IterationsCount 
+              Logger = new ConsoleLogger() }
 
-        let testNames = cfg.TestList |> Set.ofList
-        
-        let filter (t:Test) =
-            if not(testNames.Any()) then true
-            else
-                let r = t.Reference
-                let name = sprintf "%s.%s" r.Type.FullName r.Run.Name
-                testNames.Contains name
-        
-        let tests = match cfg.AssemblyLocation with
-                    | x when System.IO.File.Exists x -> 
-                        testsFromFile x envConf
-                    | x when System.IO.Directory.Exists x -> 
-                        testsFromDir x envConf
-                    | _ -> writeConfigurationIncorrect()
-
-        let testsToRun = List.filter filter tests
-        TestRunnerEngine.run testsToRun envConf    
+        runForConfig envConf testsToRun 
 
     let run args = 
-        let cfg = readConfigFromArgs (args |> List.ofArray)
-        let results = runForConfig cfg
+        let globalCfg = readConfigFromArgs (args |> List.ofArray)
+        let results = getResults globalCfg
         
         let fileName = 
-            match cfg.PathToOutputFile with
+            match globalCfg.PathToOutputFile with
             | Some(f) -> f
             | _ -> "Results.json"
 
